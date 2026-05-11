@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro Oficial – Evento Ciclista 300K</title>
+  <style>
+    :root {
+      --bg: #030303;
+      --panel: #0b0f14;
+      --panel-2: #111827;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --line: #334155;
+      --yellow: #ffd000;
+      --orange: #ff6a00;
+      --red: #ef233c;
+      --blue: #00aaff;
+      --green: #c6ff00;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255, 106, 0, .16), transparent 30%),
+        radial-gradient(circle at top left, rgba(0, 170, 255, .12), transparent 34%),
+        linear-gradient(180deg, #000 0%, #050505 45%, #0b0f14 100%);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(0, 0, 0, .82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .nav-logo img {
+      width: 110px;
+      max-height: 48px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange));
+      color: #050505;
+      font-weight: 800;
+    }
+
+    header {
+      min-height: 78vh;
+      padding: 70px 20px 50px;
+      border-bottom: 3px solid var(--orange);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.95), rgba(0,0,0,.62), rgba(0,0,0,.92)),
+        url("evento-300k-logo.png") center right / 56% no-repeat;
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-logos {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .logo-evento {
+      width: 560px;
+      max-width: 100%;
+      filter: drop-shadow(0 0 24px rgba(255, 106, 0, .32));
+    }
+
+    .logo-equipo {
+      width: 260px;
+      max-width: 80%;
+      filter: drop-shadow(0 0 14px rgba(255,255,0,.22));
+    }
+
+    .hero-title {
+      margin: 20px 0 8px;
+      font-size: clamp(42px, 8vw, 88px);
+      line-height: .9;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-title span {
+      display: block;
+      color: var(--yellow);
+      text-shadow: 0 0 22px rgba(255,208,0,.25);
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .badge {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 16px;
+      min-height: 96px;
+    }
+
+    .badge strong {
+      display: block;
+      color: var(--yellow);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .badge span { color: var(--muted); font-size: 14px; }
+
+    .hero-card {
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(17,24,39,.88), rgba(0,0,0,.68));
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 0 45px rgba(0,170,255,.08);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      color: var(--yellow);
+      font-size: clamp(28px, 4vw, 42px);
+      text-transform: uppercase;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 10px auto 0;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+      color: var(--yellow);
+      font-size: 18px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 20px;
+    }
+
+    form {
+      background: rgba(11, 15, 20, .96);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 0 45px rgba(255, 208, 0, .09);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    form h2 {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-top: 34px;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #374151;
+      border-radius: 12px;
+      font-size: 15px;
+      background: #050505;
+      color: var(--text);
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 3px rgba(255,208,0,.1);
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 18px;
+    }
+
+    .note {
+      background: rgba(255, 208, 0, .08);
+      padding: 15px;
+      border-left: 4px solid var(--yellow);
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #e5e7eb;
+      line-height: 1.55;
+    }
+
+    .hidden { display: none !important; }
+
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .kit-card {
+      position: relative;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 18px;
+      background: linear-gradient(180deg, #111827, #050505);
+      cursor: pointer;
+      transition: .2s;
+      min-height: 100%;
+    }
+
+    .kit-card:hover {
+      border-color: var(--yellow);
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(255,208,0,.12);
+    }
+
+    .kit-card input {
+      width: auto;
+      margin-right: 8px;
+      accent-color: var(--yellow);
+    }
+
+    .kit-card img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin: 10px 0;
+      background: rgba(255,255,255,.03);
+    }
+
+    .kit-card h3 {
+      margin: 8px 0;
+      color: #fff;
+      font-size: 21px;
+    }
+
+    .kit-card .precio {
+      font-size: 28px;
+      color: var(--yellow);
+      font-weight: 900;
+      margin: 6px 0 12px;
+    }
+
+    .kit-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .badge-popular {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange));
+      color: #030303;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 24px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 5px;
+      accent-color: var(--yellow);
+    }
+
+    .checkbox label {
+      margin: 0;
+      line-height: 1.55;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 30px;
+      padding: 16px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange), var(--blue));
+      color: #050505;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      cursor: pointer;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+
+    button:hover { filter: brightness(1.08); }
+
+    .success {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 10px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 30px 20px;
+      text-align: center;
+      color: #94a3b8;
+      background: #000;
+    }
+
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .hero-badges, .info-grid, .kit-grid, .form-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      header { min-height: auto; padding-top: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-logo">
+        <img src="logo-otay-night-riders.png" alt="OTAY Night Riders" />
+        <span>OTAY Night Riders</span>
+      </a>
+      <div class="nav-links">
+        <a href="#evento">Evento</a>
+        <a href="#kits">Kits</a>
+        <a href="#registro">Registro</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#registro" class="nav-cta">Regístrate</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="inicio">
+    <div class="hero-content">
+      <div>
+        <div class="hero-logos">
+          <img src="evento-300k-logo.png" alt="Evento Oficial 300K Otay Bufadora Otay" class="logo-evento" />
+          <img src="logo-otay-night-riders.png" alt="Logo OTAY Night Riders" class="logo-equipo" />
+        </div>
+
+        <h1 class="hero-title">Registro Oficial <span>300K</span></h1>
+        <p class="hero-text">
+          Bienvenido al registro oficial del reto ciclista 300K. Al correo registrado se enviará el método de pago, confirmación, información del kit y avisos importantes del evento.
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge"><strong>Distancias</strong><span>150 KM / 300 KM</span></div>
+          <div class="badge"><strong>Ruta</strong><span>Otay – Bufadora – Otay</span></div>
+          <div class="badge"><strong>Modalidad</strong><span>Reto de autosuficiencia</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="playera-300k.png" alt="Playera oficial del evento 300K" />
+      </div>
+    </div>
+  </header>
+
+  <section id="evento" class="section">
+    <div class="section-title">
+      <h2>Información del Evento</h2>
+      <p>Este registro permite organizar la participación de ciclistas, voluntarios y carros de apoyo para mantener una logística segura y ordenada durante la ruta.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card"><h3>🚴 Participantes</h3><p>Registro para ciclistas que realizarán 150 KM o 300 KM.</p></div>
+      <div class="info-card"><h3>🚗 Apoyo</h3><p>Registro para voluntarios y carros de apoyo en ruta.</p></div>
+      <div class="info-card"><h3>💧 Hidratación</h3><p>Se contemplan puntos de apoyo e hidratación durante el recorrido.</p></div>
+      <div class="info-card"><h3>🏁 Finisher</h3><p>Opción de adquirir playera oficial y medalla del evento.</p></div>
+    </div>
+  </section>
+
+  <main id="registro">
+    <form id="registroForm">
+      <h2>Tipo de participación</h2>
+
+      <label for="participacion">¿Cuál será tu participación?</label>
+      <select id="participacion" name="participacion" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Ciclista">Ciclista</option>
+        <option value="Voluntario / Carro de apoyo">Voluntario / Carro de apoyo</option>
+      </select>
+
+      <section id="seccionCiclista" class="hidden">
+        <h2>Datos personales – Ciclista</h2>
+        <div class="form-grid">
+          <label>Nombre completo<input type="text" name="nombre_ciclista" data-required="true" /></label>
+          <label>Edad<input type="number" name="edad" min="1" data-required="true" /></label>
+          <label>Número de WhatsApp<input type="tel" name="whatsapp_ciclista" data-required="true" /></label>
+          <label>Correo electrónico<input type="email" name="correo_ciclista" data-required="true" /></label>
+          <label>Ciudad de residencia<input type="text" name="ciudad" data-required="true" /></label>
+          <label>Equipo o club al que perteneces<input type="text" name="club" data-required="true" /></label>
+        </div>
+
+        <h2>Información del reto</h2>
+        <div class="form-grid">
+          <label>¿Qué distancia realizarás?
+            <select name="distancia" data-required="true">
+              <option value="">Selecciona una opción</option>
+              <option value="150 KM">150 KM</option>
+              <option value="300 KM">300 KM</option>
+            </select>
+          </label>
+
+          <label>¿Desde dónde deseas salir?
+            <select name="salida" data-required="true">
+              <option value="">Selecciona una opción</option>
+              <option value="Oficina">Oficina</option>
+              <option value="Rosarito">Rosarito</option>
+            </select>
+          </label>
+        </div>
+
+        <label>¿Llevarás carro de apoyo personal?</label>
+        <select id="carroPersonal" name="carro_apoyo_personal" data-required="true">
+          <option value="">Selecciona una opción</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+
+        <div id="datosCarroPersonal" class="hidden">
+          <div class="form-grid">
+            <label>Nombre del conductor<input type="text" name="nombre_conductor" data-carro-required="true" /></label>
+            <label>Marca y modelo del vehículo<input type="text" name="vehiculo_personal" data-carro-required="true" /></label>
+          </div>
+        </div>
+
+        <h2 id="kits">Kit</h2>
+        <label>Selecciona una opción de kit</label>
+        <div class="kit-grid">
+          <label class="kit-card">
+            <input type="radio" name="kit" value="Inscripción e hidratación — $200" data-required="true" />
+            <h3>Inscripción e hidratación</h3>
+            <div class="precio">$200</div>
+            <ul>
+              <li>Registro al evento</li>
+              <li>Puntos de hidratación</li>
+              <li>Apoyo durante la ruta</li>
+            </ul>
+          </label>
+
+          <label class="kit-card">
+            <img src="playera-300k.png" alt="Playera oficial del evento 300K" />
+            <img src="medalla-300k.png" alt="Medalla finisher 300K" />
+            <input type="radio" name="kit" value="Playera y medalla — $300" data-required="true" />
+            <h3>Playera y medalla</h3>
+            <div class="precio">$300</div>
+            <ul>
+              <li>Playera oficial del evento</li>
+              <li>Medalla finisher</li>
+            </ul>
+          </label>
+
+          <label class="kit-card">
+            <span class="badge-popular">Más completo</span>
+            <img src="playera-300k.png" alt="Playera oficial del evento 300K" />
+            <img src="medalla-300k.png" alt="Medalla finisher 300K" />
+            <input type="radio" name="kit" value="Kit completo — $500" data-required="true" />
+            <h3>Kit completo</h3>
+            <div class="precio">$500</div>
+            <ul>
+              <li>Registro al evento</li>
+              <li>Puntos de hidratación</li>
+              <li>Playera oficial del evento</li>
+              <li>Medalla finisher</li>
+            </ul>
+          </label>
+        </div>
+
+        <label>Talla de playera</label>
+        <select name="talla_ciclista" data-required="true">
+          <option value="">Selecciona una talla</option>
+          <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+        </select>
+        <div class="note">Selecciona únicamente una opción de kit. Las playeras son corte unisex/hombre.</div>
+
+        <h2>Información médica</h2>
+        <div class="form-grid">
+          <label>¿Cuentas con servicio médico?
+            <select name="servicio_medico" data-required="true">
+              <option value="">Selecciona una opción</option>
+              <option>IMSS</option><option>ISSSTE</option><option>Seguro Particular</option><option>Otro</option>
+            </select>
+          </label>
+          <label>Número de seguro social / póliza<input type="text" name="numero_seguro" data-required="true" /></label>
+          <label>Tipo de sangre<input type="text" name="tipo_sangre" data-required="true" /></label>
+        </div>
+        <label>¿Padeces alguna condición médica relevante?</label>
+        <textarea name="condicion_medica" data-required="true" placeholder="Si no aplica, escribe: No aplica"></textarea>
+
+        <h2>Contacto de emergencia</h2>
+        <div class="form-grid">
+          <label>Nombre completo del contacto de emergencia<input type="text" name="contacto_emergencia" data-required="true" /></label>
+          <label>Relación / parentesco<input type="text" name="parentesco" data-required="true" /></label>
+          <label>Número telefónico del contacto de emergencia<input type="tel" name="telefono_emergencia" data-required="true" /></label>
+        </div>
+
+        <div class="note">
+          Este es un reto de autosuficiencia. Aunque existirán puntos de apoyo e hidratación, cada participante es responsable de su condición física, alimentación, hidratación, seguridad y equipo durante el recorrido.
+        </div>
+      </section>
+
+      <section id="seccionVoluntario" class="hidden">
+        <h2>Datos personales – Voluntario / Carro de apoyo</h2>
+        <div class="form-grid">
+          <label>Nombre completo<input type="text" name="nombre_voluntario" data-required="true" /></label>
+          <label>Número de WhatsApp<input type="tel" name="whatsapp_voluntario" data-required="true" /></label>
+          <label>Correo electrónico<input type="email" name="correo_voluntario" data-required="true" /></label>
+          <label>Equipo o grupo al que pertenece<input type="text" name="grupo_voluntario" data-required="true" /></label>
+        </div>
+
+        <h2>Información del carro de apoyo</h2>
+        <div class="form-grid">
+          <label>¿Cuentas con rack para bicicleta?
+            <select name="rack" data-required="true">
+              <option value="">Selecciona una opción</option><option>Sí</option><option>No</option>
+            </select>
+          </label>
+          <label>¿Tu vehículo se encuentra en buenas condiciones?
+            <select name="vehiculo_buenas_condiciones" data-required="true">
+              <option value="">Selecciona una opción</option><option>Sí</option><option>No</option>
+            </select>
+          </label>
+          <label>Capacidad aproximada de bicicletas<input type="number" name="capacidad_bicicletas" min="0" data-required="true" /></label>
+        </div>
+
+        <div class="note"><strong>Apoyo incluye:</strong><br>1 bolsa de hielo, 10 electrolitos por carro, $500 pesos para viáticos y playera Staff / Voluntario.</div>
+        <div class="note"><strong>Requisitos del carro de apoyo:</strong><br>Hielera, viáticos adicionales, carro en buen estado y rack.</div>
+
+        <h2>Playera y medalla Staff</h2>
+        <label>Selecciona una opción</label>
+        <div class="kit-grid">
+          <label class="kit-card">
+            <input type="radio" name="staff_extra" value="No deseo adquirir playera ni medalla" data-required="true" />
+            <h3>No deseo adquirir</h3>
+            <div class="precio">$0</div>
+            <ul><li>Solo participaré como voluntario / carro de apoyo</li></ul>
+          </label>
+
+          <label class="kit-card">
+            <img src="playera-300k.png" alt="Playera oficial del evento 300K" />
+            <input type="radio" name="staff_extra" value="Deseo playera oficial" data-required="true" />
+            <h3>Playera oficial</h3>
+            <div class="precio">$300</div>
+          </label>
+
+          <label class="kit-card">
+            <img src="medalla-300k.png" alt="Medalla finisher 300K" />
+            <input type="radio" name="staff_extra" value="Deseo medalla finisher" data-required="true" />
+            <h3>Medalla finisher</h3>
+            <div class="precio">$300</div>
+          </label>
+        </div>
+
+        <label>Talla de playera Staff / Voluntario</label>
+        <select name="talla_staff" data-required="true">
+          <option value="">Selecciona una talla</option>
+          <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+        </select>
+        <div class="note">Las playeras son corte unisex/hombre.</div>
+        <div class="note">Los carros de apoyo y voluntarios son fundamentales para la seguridad y logística del evento. Se solicita mantener comunicación constante y apoyar en puntos clave de hidratación y seguimiento de ruta.</div>
+      </section>
+
+      <div class="checkbox">
+        <input type="checkbox" id="acepto" name="acepto_responsabilidad" required />
+        <label for="acepto" id="textoResponsabilidad">
+          Declaro que la información proporcionada es correcta y acepto las condiciones de participación del evento.
+        </label>
+      </div>
+
+      <button type="submit">Enviar registro</button>
+      <div id="mensajeExito" class="success">¡Gracias por registrarte! En breve recibirás información del evento.</div>
+    </form>
+  </main>
+
+  <footer id="contacto">
+    <p><strong>OTAY Night Riders – Evento Ciclista 300K</strong></p>
+    <p>Otay – Bufadora – Otay | Registro oficial del evento</p>
+  </footer>
+
+  <script>
+    const WEB_APP_URL = "PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT";
+
+    const participacion = document.getElementById("participacion");
+    const seccionCiclista = document.getElementById("seccionCiclista");
+    const seccionVoluntario = document.getElementById("seccionVoluntario");
+    const carroPersonal = document.getElementById("carroPersonal");
+    const datosCarroPersonal = document.getElementById("datosCarroPersonal");
+    const form = document.getElementById("registroForm");
+    const mensajeExito = document.getElementById("mensajeExito");
+    const textoResponsabilidad = document.getElementById("textoResponsabilidad");
+
+    function setRequiredInSection(section, enabled) {
+      section.querySelectorAll("[data-required='true']").forEach((field) => {
+        field.required = enabled;
+      });
+    }
+
+    function setCarroRequired(enabled) {
+      datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach((field) => {
+        field.required = enabled;
+      });
+    }
+
+    setRequiredInSection(seccionCiclista, false);
+    setRequiredInSection(seccionVoluntario, false);
+    setCarroRequired(false);
+
+    participacion.addEventListener("change", () => {
+      mensajeExito.style.display = "none";
+      seccionCiclista.classList.add("hidden");
+      seccionVoluntario.classList.add("hidden");
+      setRequiredInSection(seccionCiclista, false);
+      setRequiredInSection(seccionVoluntario, false);
+      setCarroRequired(false);
+
+      if (participacion.value === "Ciclista") {
+        seccionCiclista.classList.remove("hidden");
+        setRequiredInSection(seccionCiclista, true);
+        setCarroRequired(carroPersonal.value === "Sí");
+        textoResponsabilidad.innerHTML = `
+          Declaro que participo bajo mi propia responsabilidad y confirmo que me encuentro en condiciones físicas adecuadas para realizar el reto ciclista.
+          Entiendo que este es un evento de autosuficiencia y que los organizadores, voluntarios y patrocinadores no se hacen responsables por accidentes, lesiones, pérdidas, daños mecánicos o cualquier situación derivada durante el recorrido.
+          Asimismo, acepto seguir las indicaciones de seguridad, respetar el reglamento del evento y mantener una conducta responsable durante toda la ruta.
+        `;
+      }
+
+      if (participacion.value === "Voluntario / Carro de apoyo") {
+        seccionVoluntario.classList.remove("hidden");
+        setRequiredInSection(seccionVoluntario, true);
+        textoResponsabilidad.innerHTML = `
+          Declaro que participaré como voluntario o carro de apoyo bajo mi propia responsabilidad y que mi vehículo se encuentra en condiciones adecuadas para realizar el acompañamiento durante el evento.
+          Entiendo que debo mantener comunicación con los organizadores, apoyar de manera responsable en los puntos asignados y seguir las indicaciones de seguridad durante toda la ruta.
+          Asimismo, acepto que los organizadores no se hacen responsables por daños mecánicos, accidentes, pérdidas o situaciones derivadas durante mi participación en el evento.
+        `;
+      }
+    });
+
+    carroPersonal.addEventListener("change", () => {
+      if (carroPersonal.value === "Sí") {
+        datosCarroPersonal.classList.remove("hidden");
+        setCarroRequired(participacion.value === "Ciclista");
+      } else {
+        datosCarroPersonal.classList.add("hidden");
+        setCarroRequired(false);
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.fecha_registro = new Date().toLocaleString("es-MX");
+
+      if (WEB_APP_URL === "PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT") {
+        alert("Falta configurar la URL de Google Apps Script para guardar los registros en Google Sheets.");
+        return;
+      }
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        form.reset();
+        seccionCiclista.classList.add("hidden");
+        seccionVoluntario.classList.add("hidden");
+        datosCarroPersonal.classList.add("hidden");
+        setRequiredInSection(seccionCiclista, false);
+        setRequiredInSection(seccionVoluntario, false);
+        setCarroRequired(false);
+        mensajeExito.style.display = "block";
+        window.scrollTo({ top: form.offsetTop - 80, behavior: "smooth" });
+      } catch (error) {
+        alert("Ocurrió un error al enviar el registro. Intenta nuevamente.");
+      }
+    });
+  </script>
+</body>
+</html>
