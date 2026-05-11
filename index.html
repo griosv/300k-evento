@@ -388,7 +388,7 @@
         <span class="route-tag">Otay - Bufadora - Otay</span>
         <div class="hero-actions">
           <a href="#registro" class="btn btn-primary">Registrarme</a>
-          <a href="#evento" class="btn btn-secondary">Ver información</a>
+          <a href="#detalle-info" class="btn btn-secondary">Ver información</a>
         </div>
         <div class="stats">
           <div class="stat"><strong>Distancias</strong><span>150 KM / 300 KM</span></div>
@@ -433,28 +433,9 @@
         <p class="closing">Aquí no se trata de velocidad… se trata de corazón.</p>
         <div style="margin-top:28px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
           <a href="#registro" class="btn btn-primary">Quiero registrarme</a>
-          <a href="#kits" class="btn btn-secondary">Ver kits</a>
+          <a href="#kits-preview" class="btn btn-secondary">Ver kits</a>
         </div>
       </div>
-      <div class="distance-grid">
-        <div class="distance-card" id="detalle150">
-          <img src="banner-150km.png" alt="150 KM" />
-          <div class="distance-content">
-            <span>Distancia alternativa</span>
-            <h3>150 KM de aventura</h3>
-            <p>Donde empiezas con emoción y terminas con orgullo.</p>
-          </div>
-        </div>
-        <div class="distance-card" id="detalle300">
-          <img src="banner-300km-ruta.png" alt="300 KM" />
-          <div class="distance-content">
-            <span>Reto principal</span>
-            <h3>300 KM</h3>
-            <p>Una ruta. Una decisión. Para ciclistas que buscan superar sus límites.</p>
-          </div>
-        </div>
-      </div>
-
       <div id="kits-preview" class="section-title" style="margin-top:70px;">
         <h2>Kits oficiales</h2>
         <p>Selecciona la experiencia que deseas vivir durante el reto OTAY - Bufadora - OTAY.</p>
@@ -493,7 +474,7 @@
         <div class="info-card"><h3>🏁 Finisher</h3><p>Playera oficial y medalla del evento.</p></div>
       </div>
 
-      <div class="details-grid">
+      <div class="details-grid" id="detalle-info">
         <div class="detail-card">
           <h3>Datos importantes</h3>
           <p>Este reto puede realizarse en dos modalidades: <strong>150 KM</strong> o <strong>300 KM</strong>. No es un paseo para principiantes.</p>
@@ -553,7 +534,20 @@
           <h3>Ubicación</h3>
           <p><strong>Fovissste 5, 22450 Tijuana, Baja California</strong></p>
           <p><a class="map-link" href="https://maps.app.goo.gl/ADJGKNK7MTMFDBCS9" target="_blank">Ver ubicación en Google Maps</a></p>
-          <p>El punto de reunión será informado y confirmado por el grupo oficial de WhatsApp.</p>
+
+          <div style="margin-top:18px;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.10);box-shadow:0 18px 40px rgba(0,0,0,.35);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1830.8288495973263!2d-116.9387444857924!3d32.53287936074663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d947745824ee39%3A0x4fac4654ba7f5a3c!2sFovissste%205%2C%2022450%20Tijuana%2C%20B.C.!5e0!3m2!1ses-419!2smx!4v1778541908997!5m2!1ses-419!2smx"
+              width="100%"
+              height="320"
+              style="border:0;display:block;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <p style="margin-top:18px;">El punto de reunión será informado y confirmado por el grupo oficial de WhatsApp.</p>
         </div>
       </div>
     </div>
