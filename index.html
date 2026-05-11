@@ -212,7 +212,7 @@
     .section-title h2{margin:0;color:var(--yellow);font-size:clamp(32px,4vw,52px);text-transform:uppercase;letter-spacing:-1px}
     .section-title p{max-width:760px;margin:12px auto 0;color:var(--muted);line-height:1.7;font-size:17px}
 
-    .distance-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .distance-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
 
     .distance-card{
       position:relative;
@@ -498,8 +498,8 @@
       </div>
 
       <div class="distance-grid" style="margin-bottom:40px;">
-        <a href="#kits" class="distance-card" style="min-height:420px;display:block;">
-          <img src="playera-modelos-300k.png" alt="Playera oficial 300 KM" style="object-fit:cover;object-position:center top;background:#050505;" />
+        <a href="#kits" class="distance-card" style="min-height:320px;display:block;">
+          <img src="playera-modelos-300k.png" alt="Playera oficial 300 KM" style="object-fit:cover;object-position:center 18%;background:#050505;height:320px;" />
           <div class="distance-content">
             <span>Finisher oficial</span>
             <h3>Playera oficial</h3>
@@ -508,7 +508,7 @@
         </a>
 
         <a href="#kits" class="distance-card" style="min-height:420px;display:block;">
-          <img src="medalla-300k.png" alt="Medalla oficial 300 KM" style="object-fit:contain;background:#050505;padding:30px;" />
+          <img src="medalla-300k.png" alt="Medalla oficial 300 KM" style="object-fit:contain;background:#050505;padding:20px;height:320px;" />
           <div class="distance-content">
             <span>Reconocimiento</span>
             <h3>Medalla finisher</h3>
@@ -815,7 +815,7 @@
   </footer>
 
   <script>
-    const WEB_APP_URL="PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT";
+    const WEB_APP_URL="https://script.google.com/macros/s/AKfycbxyD5WVKM5JSpN7q-K8kJEdhiHfxQdBRpNAM3ul2bBbsdow02e0NrwT-s-TPXu0GyG1_Q/exec";
     const participacion=document.getElementById("participacion"),seccionCiclista=document.getElementById("seccionCiclista"),seccionVoluntario=document.getElementById("seccionVoluntario"),carroPersonal=document.getElementById("carroPersonal"),datosCarroPersonal=document.getElementById("datosCarroPersonal"),form=document.getElementById("registroForm"),mensajeExito=document.getElementById("mensajeExito"),textoResponsabilidad=document.getElementById("textoResponsabilidad");
     function setRequiredInSection(section,enabled){section.querySelectorAll("[data-required='true']").forEach(field=>field.required=enabled)}
     function setCarroRequired(enabled){datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach(field=>field.required=enabled)}
