@@ -883,33 +883,116 @@
   </footer>
 
   <script>
-    const WEB_APP
-    const participacion=document.getElementById("participacion"),seccionCiclista=document.getElementById("seccionCiclista"),seccionVoluntario=document.getElementById("seccionVoluntario"),carroPersonal=document.getElementById("carroPersonal"),datosCarroPersonal=document.getElementById("datosCarroPersonal"),form=document.getElementById("registroForm"),mensajeExito=document.getElementById("mensajeExito"),textoResponsabilidad=document.getElementById("textoResponsabilidad"),tallaStaff=document.getElementById("tallaStaff");
-    function setRequiredInSection(section,enabled){section.querySelectorAll("[data-required='true']").forEach(field=>field.required=enabled)}
-    function setCarroRequired(enabled){datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach(field=>field.required=enabled)}
-    setRequiredInSection(seccionCiclista,false);setRequiredInSection(seccionVoluntario,false);setCarroRequired(false);
-    function validarTallaStaff(){
-      const opcion=document.querySelector('input[name="staff_extra"]:checked');
-      if(!opcion){
-        tallaStaff.required=false;
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz9bNYeCcpYoB_lsAt6dyGR7rW12rsoz-O_y4pxHKdsVvW5xjnzxFSs04vdFC1K1r0syQ/exec";
+
+    const participacion = document.getElementById("participacion");
+    const seccionCiclista = document.getElementById("seccionCiclista");
+    const seccionVoluntario = document.getElementById("seccionVoluntario");
+    const carroPersonal = document.getElementById("carroPersonal");
+    const datosCarroPersonal = document.getElementById("datosCarroPersonal");
+    const form = document.getElementById("registroForm");
+    const mensajeExito = document.getElementById("mensajeExito");
+    const textoResponsabilidad = document.getElementById("textoResponsabilidad");
+    const tallaStaff = document.getElementById("tallaStaff");
+
+    function setRequiredInSection(section, enabled) {
+      section.querySelectorAll("[data-required='true']").forEach((field) => {
+        field.required = enabled;
+      });
+    }
+
+    function setCarroRequired(enabled) {
+      datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach((field) => {
+        field.required = enabled;
+      });
+    }
+
+    function validarTallaStaff() {
+      if (!tallaStaff) return;
+
+      const opcion = document.querySelector('input[name="staff_extra"]:checked');
+
+      if (!opcion) {
+        tallaStaff.required = false;
         return;
       }
 
-      if(opcion.value==="No deseo adquirir playera ni medalla"){
-        tallaStaff.required=false;
-        tallaStaff.value="";
-      }else{
-        tallaStaff.required=true;
+      if (opcion.value === "No deseo adquirir playera ni medalla") {
+        tallaStaff.required = false;
+        tallaStaff.value = "";
+      } else {
+        tallaStaff.required = true;
       }
     }
 
-    document.querySelectorAll('input[name="staff_extra"]').forEach(radio=>{
-      radio.addEventListener("change",validarTallaStaff)
+    function limpiarSecciones() {
+      seccionCiclista.classList.add("hidden");
+      seccionVoluntario.classList.add("hidden");
+      datosCarroPersonal.classList.add("hidden");
+      setRequiredInSection(seccionCiclista, false);
+      setRequiredInSection(seccionVoluntario, false);
+      setCarroRequired(false);
+      if (tallaStaff) tallaStaff.required = false;
+    }
+
+    setRequiredInSection(seccionCiclista, false);
+    setRequiredInSection(seccionVoluntario, false);
+    setCarroRequired(false);
+
+    document.querySelectorAll('input[name="staff_extra"]').forEach((radio) => {
+      radio.addEventListener("change", validarTallaStaff);
     });
 
-    participacion.addEventListener("change",()=>{mensajeExito.style.display="none";seccionCiclista.classList.add("hidden");seccionVoluntario.classList.add("hidden");setRequiredInSection(seccionCiclista,false);setRequiredInSection(seccionVoluntario,false);setCarroRequired(false);if(participacion.value==="Ciclista"){seccionCiclista.classList.remove("hidden");setRequiredInSection(seccionCiclista,true);setCarroRequired(carroPersonal.value==="Sí");textoResponsabilidad.innerHTML=`Declaro que participo bajo mi propia responsabilidad y confirmo que me encuentro en condiciones físicas adecuadas para realizar el reto ciclista. Entiendo que este es un evento de autosuficiencia y que los organizadores, voluntarios y patrocinadores no se hacen responsables por accidentes, lesiones, pérdidas, daños mecánicos o cualquier situación derivada durante el recorrido. Asimismo, acepto seguir las indicaciones de seguridad y mantener una conducta responsable durante toda la ruta.`}if(participacion.value==="Voluntario / Carro de apoyo"){seccionVoluntario.classList.remove("hidden");setRequiredInSection(seccionVoluntario,true);textoResponsabilidad.innerHTML=`Declaro que participaré como voluntario o carro de apoyo bajo mi propia responsabilidad y que mi vehículo se encuentra en condiciones adecuadas para realizar el acompañamiento durante el evento. Entiendo que debo mantener comunicación con los organizadores, apoyar de manera responsable en los puntos asignados y seguir las indicaciones de seguridad durante toda la ruta.`}});
-    carroPersonal.addEventListener("change",()=>{if(carroPersonal.value==="Sí"){datosCarroPersonal.classList.remove("hidden");setCarroRequired(participacion.value==="Ciclista")}else{datosCarroPersonal.classList.add("hidden");setCarroRequired(false)}});
-    form.addEventListener("submit",async e=>{e.preventDefault();const formData=new FormData(form);formData.append("fecha_registro",new Date().toLocaleString("es-MX"));const data=Object.fromEntries(formData.entries());if(WEB_APP_URL==="PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT"){alert("Falta configurar la URL de Google Apps Script para guardar los registros en Google Sheets.");return}try{await fetch(WEB_APP_URL,{method:"POST",mode:"no-cors",body:formData});form.reset();seccionCiclista.classList.add("hidden");seccionVoluntario.classList.add("hidden");datosCarroPersonal.classList.add("hidden");setRequiredInSection(seccionCiclista,false);setRequiredInSection(seccionVoluntario,false);setCarroRequired(false);mensajeExito.style.display="block";mensajeExito.scrollIntoView({behavior:"smooth",block:"center"})}catch(error){alert("Ocurrió un error al enviar el registro. Intenta nuevamente.")}});
+    participacion.addEventListener("change", () => {
+      mensajeExito.style.display = "none";
+      limpiarSecciones();
+
+      if (participacion.value === "Ciclista") {
+        seccionCiclista.classList.remove("hidden");
+        setRequiredInSection(seccionCiclista, true);
+        setCarroRequired(carroPersonal.value === "Sí");
+        textoResponsabilidad.innerHTML = `Declaro que participo bajo mi propia responsabilidad y confirmo que me encuentro en condiciones físicas adecuadas para realizar el reto ciclista. Entiendo que este es un evento de autosuficiencia y que los organizadores, voluntarios y patrocinadores no se hacen responsables por accidentes, lesiones, pérdidas, daños mecánicos o cualquier situación derivada durante el recorrido. Asimismo, acepto seguir las indicaciones de seguridad y mantener una conducta responsable durante toda la ruta.`;
+      }
+
+      if (participacion.value === "Voluntario / Carro de apoyo") {
+        seccionVoluntario.classList.remove("hidden");
+        setRequiredInSection(seccionVoluntario, true);
+        validarTallaStaff();
+        textoResponsabilidad.innerHTML = `Declaro que participaré como voluntario o carro de apoyo bajo mi propia responsabilidad y que mi vehículo se encuentra en condiciones adecuadas para realizar el acompañamiento durante el evento. Entiendo que debo mantener comunicación con los organizadores, apoyar de manera responsable en los puntos asignados y seguir las indicaciones de seguridad durante toda la ruta.`;
+      }
+    });
+
+    carroPersonal.addEventListener("change", () => {
+      if (carroPersonal.value === "Sí") {
+        datosCarroPersonal.classList.remove("hidden");
+        setCarroRequired(participacion.value === "Ciclista");
+      } else {
+        datosCarroPersonal.classList.add("hidden");
+        setCarroRequired(false);
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      formData.append("fecha_registro", new Date().toLocaleString("es-MX"));
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        form.reset();
+        limpiarSecciones();
+        mensajeExito.style.display = "block";
+        mensajeExito.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (error) {
+        alert("Ocurrió un error al enviar el registro. Intenta nuevamente.");
+      }
+    });
   </script>
 </body>
 </html>
