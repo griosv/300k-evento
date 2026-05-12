@@ -350,6 +350,23 @@
     }
 
     textarea{min-height:100px;resize:vertical}
+
+    .phone-row{
+      display:grid;
+      grid-template-columns:130px 1fr;
+      gap:10px;
+      align-items:end;
+    }
+
+    .phone-row select,
+    .phone-row input{
+      margin-top:8px;
+    }
+
+    @media(max-width:520px){
+      .phone-row{grid-template-columns:1fr}
+    }
+
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
     .hidden{display:none!important}
 
@@ -482,6 +499,34 @@
 
     .success h3{margin:0 0 16px;font-size:38px;color:#4ade80;text-transform:uppercase;letter-spacing:1px}
     .success p{margin:0;font-size:19px;line-height:1.8;color:#f0fdf4}
+
+    .whatsapp-confirm-btn{
+      display:none;
+      width:100%;
+      margin-top:22px;
+      padding:18px;
+      border-radius:18px;
+      background:linear-gradient(90deg,#25D366,#128C7E);
+      color:#fff;
+      font-size:16px;
+      font-weight:950;
+      text-transform:uppercase;
+      text-align:center;
+      box-shadow:0 18px 40px rgba(37,211,102,.20);
+    }
+
+    .whatsapp-confirm-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .whatsapp-note{
+      display:none;
+      margin-top:12px;
+      color:#d7fbe4;
+      font-size:14px;
+      line-height:1.6;
+      text-align:center;
+    }
 
     footer{
       background:#000;
@@ -846,8 +891,14 @@
 
             <label>
               Número de WhatsApp
-              <input type="tel" name="whatsapp_ciclista" data-required="true" placeholder="Ej: 6641234567">
-              <small class="field-help">Número donde se te enviará información del evento.</small>
+              <div class="phone-row">
+                <select name="lada_whatsapp_ciclista" data-required="true" aria-label="Lada WhatsApp ciclista">
+                  <option value="+52">🇲🇽 +52 México</option>
+                  <option value="+1">🇺🇸 +1 Estados Unidos</option>
+                </select>
+                <input type="tel" name="whatsapp_ciclista" data-required="true" placeholder="Ej: 6641234567">
+              </div>
+              <small class="field-help">Selecciona la lada y escribe el número donde se te enviará información del evento.</small>
             </label>
 
             <label>
@@ -1067,8 +1118,14 @@
 
             <label>
               Número telefónico del contacto de emergencia
-              <input type="tel" name="telefono_emergencia" data-required="true" placeholder="Ej: 6641234567">
-              <small class="field-help">Número al que se llamará si ocurre una emergencia.</small>
+              <div class="phone-row">
+                <select name="lada_telefono_emergencia" data-required="true" aria-label="Lada contacto de emergencia">
+                  <option value="+52">🇲🇽 +52 México</option>
+                  <option value="+1">🇺🇸 +1 Estados Unidos</option>
+                </select>
+                <input type="tel" name="telefono_emergencia" data-required="true" placeholder="Ej: 6641234567">
+              </div>
+              <small class="field-help">Selecciona la lada y escribe el número al que se llamará si ocurre una emergencia.</small>
             </label>
           </div>
 
@@ -1087,8 +1144,14 @@
 
             <label>
               Número de WhatsApp
-              <input type="tel" name="whatsapp_voluntario" data-required="true" placeholder="Ej: 6641234567">
-              <small class="field-help">Número para coordinar la logística del evento.</small>
+              <div class="phone-row">
+                <select name="lada_whatsapp_voluntario" data-required="true" aria-label="Lada WhatsApp voluntario">
+                  <option value="+52">🇲🇽 +52 México</option>
+                  <option value="+1">🇺🇸 +1 Estados Unidos</option>
+                </select>
+                <input type="tel" name="whatsapp_voluntario" data-required="true" placeholder="Ej: 6641234567">
+              </div>
+              <small class="field-help">Selecciona la lada y escribe el número para coordinar la logística del evento.</small>
             </label>
 
             <label>
@@ -1221,6 +1284,13 @@
         <div id="mensajeExito" class="success">
           <h3>¡Registro enviado con éxito!</h3>
           <p>Tu información fue registrada correctamente.<br><br>En breve recibirás por correo electrónico información del evento, método de pago, grupo oficial de WhatsApp y detalles importantes del reto <strong>OTAY – BUFADORA – OTAY 2026</strong>.</p>
+
+          <a id="btnWhatsAppConfirmacion" class="whatsapp-confirm-btn" href="#" target="_blank" rel="noopener noreferrer">
+            Enviar confirmación por WhatsApp
+          </a>
+          <div id="notaWhatsAppConfirmacion" class="whatsapp-note">
+            Se abrirá WhatsApp con el mensaje ya preparado para enviarlo al organizador.
+          </div>
         </div>
       </form>
     </div>
@@ -1268,6 +1338,15 @@
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8KrfHyOLUXsLyrBwg6JRsGQ5rB5lMK48ALP3z362e_5Ksf--3oBDw/exec";
 
+    /*
+      IMPORTANTE:
+      Cambia este número por el WhatsApp oficial que recibirá las confirmaciones.
+      Formato requerido para WhatsApp: lada + número, sin espacios, sin + y sin guiones.
+      Ejemplo México: 526641234567
+      Ejemplo USA: 16191234567
+    */
+    const WHATSAPP_REGISTRO = "526641744075";
+
     const participacion = document.getElementById("participacion");
     const seccionCiclista = document.getElementById("seccionCiclista");
     const seccionVoluntario = document.getElementById("seccionVoluntario");
@@ -1283,6 +1362,8 @@
     const campoTallaStaff = document.getElementById("campoTallaStaff");
     const btnEnviar = document.getElementById("btnEnviar");
     const mensajeEnviando = document.getElementById("mensajeEnviando");
+    const btnWhatsAppConfirmacion = document.getElementById("btnWhatsAppConfirmacion");
+    const notaWhatsAppConfirmacion = document.getElementById("notaWhatsAppConfirmacion");
     let enviandoRegistro = false;
 
     function setRequiredInSection(section, enabled) {
@@ -1410,6 +1491,7 @@
 
     participacion.addEventListener("change", () => {
       mensajeExito.style.display = "none";
+      ocultarBotonWhatsApp();
       limpiarSecciones();
 
       if (participacion.value === "Ciclista") {
@@ -1430,6 +1512,83 @@
       }
     });
 
+
+
+    function agregarTelefonosCompletos(formData) {
+      const ladaWhatsappCiclista = formData.get("lada_whatsapp_ciclista");
+      const whatsappCiclista = formData.get("whatsapp_ciclista");
+      const ladaWhatsappVoluntario = formData.get("lada_whatsapp_voluntario");
+      const whatsappVoluntario = formData.get("whatsapp_voluntario");
+      const ladaEmergencia = formData.get("lada_telefono_emergencia");
+      const telefonoEmergencia = formData.get("telefono_emergencia");
+
+      if (ladaWhatsappCiclista && whatsappCiclista) {
+        formData.append("whatsapp_ciclista_completo", `${ladaWhatsappCiclista} ${whatsappCiclista}`);
+      }
+
+      if (ladaWhatsappVoluntario && whatsappVoluntario) {
+        formData.append("whatsapp_voluntario_completo", `${ladaWhatsappVoluntario} ${whatsappVoluntario}`);
+      }
+
+      if (ladaEmergencia && telefonoEmergencia) {
+        formData.append("telefono_emergencia_completo", `${ladaEmergencia} ${telefonoEmergencia}`);
+      }
+    }
+
+    function obtenerValor(formData, nombre) {
+      return (formData.get(nombre) || "").toString().trim();
+    }
+
+    function crearMensajeWhatsApp(formData) {
+      const tipo = obtenerValor(formData, "participacion");
+
+      const nombre = tipo === "Ciclista"
+        ? obtenerValor(formData, "nombre_ciclista")
+        : obtenerValor(formData, "nombre_voluntario");
+
+      const whatsapp = tipo === "Ciclista"
+        ? `${obtenerValor(formData, "lada_whatsapp_ciclista")} ${obtenerValor(formData, "whatsapp_ciclista")}`.trim()
+        : `${obtenerValor(formData, "lada_whatsapp_voluntario")} ${obtenerValor(formData, "whatsapp_voluntario")}`.trim();
+
+      const distancia = obtenerValor(formData, "distancia") || "No aplica";
+      const salida = obtenerValor(formData, "salida") || "No aplica";
+      const kit = obtenerValor(formData, "kit") || obtenerValor(formData, "staff_extra") || "No especificado";
+      const talla = obtenerValor(formData, "talla_ciclista") || obtenerValor(formData, "talla_staff") || "No aplica";
+
+      return `Hola, ya realicé mi registro para OTAY - BUFADORA - OTAY 2026 🚴\n\n` +
+        `Nombre: ${nombre || "No especificado"}\n` +
+        `Participación: ${tipo || "No especificada"}\n` +
+        `WhatsApp: ${whatsapp || "No especificado"}\n` +
+        `Distancia: ${distancia}\n` +
+        `Salida: ${salida}\n` +
+        `Kit / opción: ${kit}\n` +
+        `Talla: ${talla}\n\n` +
+        `Quedo pendiente de la información de pago y detalles del evento.`;
+    }
+
+    function prepararBotonWhatsApp(mensaje) {
+      if (!btnWhatsAppConfirmacion || !notaWhatsAppConfirmacion) return;
+
+      const numero = WHATSAPP_REGISTRO.replace(/\D/g, "");
+      const texto = encodeURIComponent(mensaje);
+      btnWhatsAppConfirmacion.href = `https://wa.me/${numero}?text=${texto}`;
+      btnWhatsAppConfirmacion.style.display = "inline-flex";
+      btnWhatsAppConfirmacion.style.alignItems = "center";
+      btnWhatsAppConfirmacion.style.justifyContent = "center";
+      notaWhatsAppConfirmacion.style.display = "block";
+    }
+
+    function ocultarBotonWhatsApp() {
+      if (btnWhatsAppConfirmacion) {
+        btnWhatsAppConfirmacion.style.display = "none";
+        btnWhatsAppConfirmacion.href = "#";
+      }
+
+      if (notaWhatsAppConfirmacion) {
+        notaWhatsAppConfirmacion.style.display = "none";
+      }
+    }
+
     carroPersonal.addEventListener("change", () => {
       if (carroPersonal.value === "Sí") {
         datosCarroPersonal.classList.remove("hidden");
@@ -1449,10 +1608,13 @@
       btnEnviar.disabled = true;
       btnEnviar.textContent = "Enviando registro...";
       mensajeExito.style.display = "none";
+      ocultarBotonWhatsApp();
       mensajeEnviando.style.display = "block";
       mensajeEnviando.scrollIntoView({ behavior: "smooth", block: "center" });
 
       const formData = new FormData(form);
+      agregarTelefonosCompletos(formData);
+      const mensajeWhatsApp = crearMensajeWhatsApp(formData);
       formData.append("fecha_registro", new Date().toLocaleString("es-MX"));
 
       try {
@@ -1466,6 +1628,7 @@
         limpiarSecciones();
 
         mensajeEnviando.style.display = "none";
+        prepararBotonWhatsApp(mensajeWhatsApp);
         mensajeExito.style.display = "block";
         mensajeExito.scrollIntoView({ behavior: "smooth", block: "center" });
 
