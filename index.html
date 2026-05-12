@@ -1,1227 +1,1440 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>OTAY Night Riders - Registro Oficial</title>
-
-<style>
-
-:root{
-  --bg:#050505;
-  --panel:#0d111a;
-  --text:#f8fafc;
-  --muted:#b9c2cf;
-  --line:rgba(255,255,255,.12);
-  --yellow:#ffd400;
-  --orange:#ff6a00;
-  --blue:#21b8ff;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#050505;
-  color:white;
-  overflow-x:hidden;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-.wrap{
-  width:min(1180px, calc(100% - 32px));
-  margin:auto;
-}
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:80px 0;
-  background:
-  linear-gradient(180deg, rgba(0,0,0,.8), rgba(0,0,0,.95)),
-  url("hero-banner-300km.png") center center / cover no-repeat;
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:40px;
-}
-
-.eyebrow{
-  color:var(--yellow);
-  text-transform:uppercase;
-  letter-spacing:3px;
-  font-weight:900;
-  margin-bottom:16px;
-}
-
-.hero h1{
-  margin:0;
-  font-size:clamp(50px, 8vw, 110px);
-  line-height:.9;
-  text-transform:uppercase;
-}
-
-.hero h1 span{
-  color:var(--yellow);
-}
-
-.hero p{
-  margin-top:28px;
-  color:var(--muted);
-  font-size:20px;
-  line-height:1.7;
-  max-width:700px;
-}
-
-.route-tag{
-  display:inline-block;
-  margin-top:22px;
-  color:var(--blue);
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-weight:900;
-}
-
-/* BOTONES */
-
-.hero-actions{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  margin-top:34px;
-}
-
-.btn{
-  padding:15px 24px;
-  border-radius:999px;
-  font-weight:900;
-  text-transform:uppercase;
-  font-size:14px;
-}
-
-.btn-primary{
-  background:linear-gradient(90deg,var(--yellow),var(--orange));
-  color:black;
-}
-
-.btn-secondary{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-}
-
-/* STATS */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:40px;
-}
-
-.stat{
-  padding:22px;
-  border-radius:24px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--line);
-}
-
-.stat strong{
-  display:block;
-  color:var(--yellow);
-  margin-bottom:8px;
-  text-transform:uppercase;
-}
-
-.stat span{
-  color:var(--muted);
-}
-
-/* SECTION */
-
-.section{
-  padding:80px 0;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.section-title h2{
-  margin:0;
-  color:var(--yellow);
-  font-size:clamp(34px,4vw,54px);
-  text-transform:uppercase;
-}
-
-.section-title p{
-  color:var(--muted);
-  line-height:1.7;
-  max-width:760px;
-  margin:16px auto 0;
-}
-
-/* STORY */
-
-.event-story{
-  max-width:980px;
-  margin:auto;
-  padding:36px;
-  border-radius:30px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--line);
-  text-align:center;
-}
-
-.event-story img{
-  width:160px;
-  margin-bottom:24px;
-}
-
-.event-story h3{
-  margin:0 0 20px;
-  color:var(--yellow);
-  font-size:30px;
-  text-transform:uppercase;
-}
-
-.event-story p{
-  line-height:1.8;
-  color:#e7edf7;
-}
-
-.closing{
-  color:var(--blue)!important;
-  text-transform:uppercase;
-  font-weight:900;
-}
-
-/* DISTANCE */
-
-.distance-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-}
-
-.distance-card{
-  border-radius:30px;
-  overflow:hidden;
-  background:#0d111a;
-  border:1px solid var(--line);
-}
-
-.distance-content{
-  padding:32px;
-}
-
-.distance-content span{
-  color:var(--blue);
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:12px;
-  font-weight:900;
-}
-
-.distance-content h3{
-  margin:12px 0;
-  font-size:34px;
-}
-
-.distance-content p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
-/* DETAILS */
-
-.details-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:24px;
-}
-
-.detail-card{
-  padding:30px;
-  border-radius:28px;
-  background:#0d111a;
-  border:1px solid var(--line);
-}
-
-.detail-card h3{
-  margin:0 0 20px;
-  color:var(--yellow);
-  text-transform:uppercase;
-}
-
-.event-data{
-  display:grid;
-  gap:12px;
-}
-
-.event-data div{
-  padding:14px;
-  border-radius:16px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.event-data strong{
-  color:var(--yellow);
-}
-
-/* FORM */
-
-.form-card{
-  max-width:1100px;
-  margin:auto;
-  padding:34px;
-  border-radius:34px;
-  background:#0d111a;
-  border:1px solid var(--line);
-}
-
-form h2{
-  margin-top:40px;
-  color:var(--yellow);
-  text-transform:uppercase;
-}
-
-label{
-  display:block;
-  margin-top:18px;
-  font-weight:700;
-}
-
-input,
-select,
-textarea{
-  width:100%;
-  margin-top:8px;
-  padding:15px;
-  border-radius:16px;
-  border:1px solid #333;
-  background:#050505;
-  color:white;
-}
-
-textarea{
-  min-height:100px;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* KITS */
-
-.kit-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  align-items:start;
-}
-
-.kit-card{
-  position:relative;
-  border-radius:30px;
-  background:#0d111a;
-  border:1px solid var(--line);
-  overflow:hidden;
-  min-height:auto!important;
-  height:auto!important;
-}
-
-.kit-select{
-  padding:24px 24px 0;
-}
-
-.kit-select input{
-  width:22px;
-  height:22px;
-  accent-color:var(--yellow);
-}
-
-.kit-body{
-  padding:24px;
-}
-
-.kit-label{
-  color:var(--blue);
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:12px;
-  font-weight:900;
-}
-
-.kit-card h3{
-  margin:12px 0;
-  font-size:30px;
-}
-
-.precio{
-  font-size:46px;
-  color:var(--yellow);
-  font-weight:900;
-  margin:14px 0;
-}
-
-.kit-card ul{
-  color:var(--muted);
-  line-height:1.8;
-}
-
-.badge-popular{
-  position:absolute;
-  top:18px;
-  right:18px;
-  background:linear-gradient(90deg,var(--yellow),var(--orange));
-  color:black;
-  padding:8px 14px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-}
-
-#campoTallaCiclista,
-#campoTallaStaff{
-  scroll-margin-top:90px;
-}
-
-/* CHECK */
-
-.checkbox{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
-}
-
-.checkbox input{
-  width:auto;
-  margin-top:4px;
-}
-
-/* BUTTON */
-
-button{
-  width:100%;
-  margin-top:30px;
-  padding:18px;
-  border:0;
-  border-radius:18px;
-  background:linear-gradient(90deg,var(--yellow),var(--orange));
-  color:black;
-  font-size:18px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.success{
-  display:none;
-  margin-top:24px;
-  padding:28px;
-  border-radius:24px;
-  background:rgba(34,197,94,.15);
-  border:1px solid rgba(34,197,94,.4);
-  text-align:center;
-}
-
-.success h3{
-  color:#4ade80;
-  margin-top:0;
-}
-
-/* MOBILE */
-
-@media(max-width:980px){
-
-.hero{
-  min-height:auto;
-  padding:60px 0;
-}
-
-.hero h1{
-  font-size:56px;
-}
-
-.hero p{
-  font-size:16px;
-}
-
-.hero-actions{
-  flex-direction:column;
-}
-
-.btn{
-  width:100%;
-  text-align:center;
-}
-
-.stats,
-.distance-grid,
-.form-grid,
-.kit-grid{
-  grid-template-columns:1fr;
-}
-
-.kit-grid{
-  gap:18px;
-}
-
-.kit-card{
-  border-radius:24px;
-}
-
-.kit-body{
-  padding:24px;
-}
-
-.kit-card h3{
-  font-size:24px;
-}
-
-.precio{
-  font-size:34px;
-}
-
-#campoTallaCiclista,
-#campoTallaStaff{
-  margin-top:18px;
-  padding:18px;
-  border-radius:18px;
-  background:rgba(255,255,255,.045);
-  border:1px solid var(--line);
-}
-
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro Oficial 300 KM – Otay Bufadora Otay</title>
+
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#0d111a;
+      --panel2:#121722;
+      --text:#f8fafc;
+      --muted:#b9c2cf;
+      --line:rgba(255,255,255,.12);
+      --yellow:#ffd400;
+      --orange:#ff6a00;
+      --blue:#21b8ff;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{overflow-x:hidden;margin:0;font-family:Arial, Helvetica, sans-serif;background:#050505;color:var(--text)}
+    img,iframe{max-width:100%}
+    img{height:auto}
+    a{text-decoration:none;color:inherit}
+
+    body{
+      background:
+        radial-gradient(circle at top right, rgba(255,123,28,.14), transparent 26%),
+        radial-gradient(circle at top left, rgba(54,183,255,.08), transparent 24%),
+        linear-gradient(180deg,#000000 0%, #05070d 55%, #0a0f18 100%);
+      background-attachment:fixed;
+    }
+
+    .wrap{width:min(1180px,calc(100% - 32px));margin:auto}
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(0,0,0,.90);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .nav-brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:900;
+    }
+
+    .nav-brand img{width:128px;height:auto;display:block}
+
+    .nav-links{
+      display:flex;
+      gap:22px;
+      align-items:center;
+      font-size:13px;
+      font-weight:900;
+      text-transform:uppercase;
+      color:#d7dbe2;
+    }
+
+    .nav-links a:hover{color:var(--yellow)}
+
+    .nav-cta{
+      padding:12px 20px;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--yellow),var(--orange));
+      color:#050505!important;
+    }
+
+    .hero{
+      min-height:calc(100vh - 74px);
+      display:flex;
+      align-items:center;
+      padding:76px 0;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.96), rgba(0,0,0,.72), rgba(0,0,0,.96)),
+        url("hero-banner-300km.png") center center / cover no-repeat;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.70)),
+        radial-gradient(circle at 78% 18%, rgba(255,106,0,.16), transparent 30%),
+        radial-gradient(circle at 18% 18%, rgba(33,184,255,.10), transparent 32%);
+      pointer-events:none;
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:.98fr 1.02fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      color:var(--yellow);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:14px;
+    }
+
+    .hero h1{
+      margin:0;
+      font-size:clamp(54px,8vw,116px);
+      line-height:.88;
+      letter-spacing:-3px;
+      text-transform:uppercase;
+    }
+
+    .hero h1 span{display:block;color:var(--yellow)}
+
+    .hero p{
+      max-width:700px;
+      margin:28px 0 0;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.7;
+    }
+
+    .route-tag{
+      display:inline-block;
+      margin:24px 0 30px;
+      color:var(--blue);
+      font-weight:950;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:16px;
+    }
+
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+
+    .btn{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      min-height:52px;
+      padding:14px 26px;
+      border-radius:999px;
+      font-weight:950;
+      text-transform:uppercase;
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .btn-primary{background:linear-gradient(90deg,var(--yellow),var(--orange));color:#050505}
+    .btn-secondary{border:1px solid var(--line);color:#fff;background:rgba(255,255,255,.045)}
+
+    .hero-visual{display:grid;gap:20px}
+
+    .visual-card{
+      border-radius:34px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg,rgba(18,24,39,.90),rgba(7,10,15,.95));
+      box-shadow:0 30px 80px rgba(0,0,0,.45);
+      transition:.25s ease;
+    }
+
+    .visual-card img{
+      width:100%;
+      display:block;
+      border-radius:26px;
+      aspect-ratio:16/10;
+      object-fit:cover;
+      transition:transform .35s ease;
+    }
+
+    .visual-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(255,212,0,.45);
+    }
+
+    .visual-card:hover img{transform:scale(1.03)}
+
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+    .stat{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.045);
+      border:1px solid var(--line);
+    }
+
+    .stat strong{display:block;color:var(--yellow);text-transform:uppercase;font-size:13px;margin-bottom:6px}
+    .stat span{color:var(--muted);font-size:15px}
+
+    .section{padding:72px 0}
+    .section-title{text-align:center;margin-bottom:38px}
+    .section-title h2{margin:0;color:var(--yellow);font-size:clamp(32px,4vw,52px);text-transform:uppercase;letter-spacing:-1px}
+    .section-title p{max-width:760px;margin:12px auto 0;color:var(--muted);line-height:1.7;font-size:17px}
+
+    .event-story{
+      max-width:980px;
+      margin:0 auto 42px;
+      padding:34px;
+      border-radius:30px;
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      text-align:center;
+      box-shadow:0 28px 80px rgba(0,0,0,.30);
+    }
+
+    .event-story img{width:170px;max-width:60%;display:block;margin:0 auto 24px}
+    .event-story h3{margin:0 0 18px;color:var(--yellow);font-size:28px;text-transform:uppercase;letter-spacing:.5px}
+    .event-story p{margin:0 auto 18px;max-width:840px;color:#e8edf5;line-height:1.75;font-size:17px}
+    .event-story .closing{color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:1px}
+
+    .distance-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+
+    .distance-card{
+      position:relative;
+      min-height:280px;
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:#0d111a;
+      box-shadow:0 28px 80px rgba(0,0,0,.35);
+      transition:transform .28s ease, border-color .28s ease;
+    }
+
+    .distance-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(255,212,0,.45);
+    }
+
+    .distance-content{
+      padding:30px;
+    }
+
+    .distance-content span{color:var(--blue);text-transform:uppercase;letter-spacing:2px;font-weight:900;font-size:12px}
+    .distance-content h3{color:#fff;margin:8px 0 10px;font-size:34px;line-height:1.05}
+    .distance-content p{color:#d7dce5;line-height:1.6;margin:0}
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .info-card{
+      border-radius:24px;
+      padding:24px;
+      background:var(--panel);
+      border:1px solid var(--line);
+    }
+
+    .info-card h3{margin:0 0 10px;color:var(--yellow);font-size:20px}
+    .info-card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+
+    .details-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      margin-top:34px;
+    }
+
+    .detail-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:28px;
+    }
+
+    .detail-card h3{margin:0 0 18px;color:var(--yellow);font-size:24px;text-transform:uppercase}
+    .detail-card p,.detail-card li{color:#e5e7eb;line-height:1.65;font-size:16px}
+    .detail-card ul{margin:10px 0 0;padding-left:22px}
+    .detail-card strong{color:var(--yellow)}
+    .event-data{display:grid;gap:12px}
+    .event-data div{padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);color:#e5e7eb}
+    .event-data strong{display:inline-block;min-width:130px;color:var(--yellow);text-transform:uppercase}
+    .map-link{color:var(--blue);font-weight:900;word-break:break-word}
+
+    .form-section{padding:20px 0 80px}
+
+    .form-card{
+      max-width:1120px;
+      margin:auto;
+      border-radius:36px;
+      padding:34px;
+      background:radial-gradient(circle at top right,rgba(255,106,0,.10),transparent 25%),linear-gradient(180deg,#10141d,#08090d);
+      border:1px solid var(--line);
+      box-shadow:0 30px 100px rgba(0,0,0,.55);
+    }
+
+    form h2{
+      margin:38px 0 16px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+      color:var(--yellow);
+      text-transform:uppercase;
+      font-size:23px;
+    }
+
+    form h2:first-child{margin-top:0}
+
+    label{
+      display:block;
+      margin-top:16px;
+      color:#edf1f7;
+      font-weight:800;
+    }
+
+    .field-help{
+      display:block;
+      margin-top:6px;
+      color:#94a3b8;
+      font-size:13px;
+      font-weight:400;
+      line-height:1.45;
+    }
+
+    input,select,textarea{
+      width:100%;
+      margin-top:8px;
+      padding:15px;
+      border-radius:15px;
+      border:1px solid #343b48;
+      background:#050505;
+      color:#fff;
+      font-size:16px;
+    }
+
+    input:focus,select:focus,textarea:focus{
+      outline:none;
+      border-color:var(--yellow);
+      box-shadow:0 0 0 4px rgba(255,212,0,.09);
+    }
+
+    textarea{min-height:100px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+    .hidden{display:none!important}
+
+    .note{
+      margin-top:20px;
+      padding:16px;
+      border-radius:16px;
+      border-left:4px solid var(--yellow);
+      background:rgba(255,212,0,.08);
+      color:#e5e7eb;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .kit-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:18px;
+      align-items:start;
+    }
+
+    .kit-card{
+      position:relative;
+      min-height:auto!important;
+      height:auto!important;
+      display:flex;
+      flex-direction:column;
+      border-radius:30px;
+      overflow:hidden;
+      background:#0d111a;
+      border:1px solid var(--line);
+      transition:.22s;
+    }
+
+    .kit-card:hover{
+      transform:translateY(-6px);
+      border-color:var(--yellow);
+      box-shadow:0 24px 70px rgba(255,106,0,.10);
+    }
+
+    .kit-select{padding:22px 24px 0}
+    .kit-card input[type="radio"]{width:20px;height:20px;margin:0;accent-color:var(--yellow)}
+
+    .kit-body{padding:24px;display:flex;flex-direction:column;flex:1;height:auto!important}
+    .kit-label{color:var(--blue);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:950;margin-bottom:8px}
+    .kit-card h3{margin:0;font-size:28px;line-height:1.05}
+    .precio{font-size:42px;font-weight:950;color:var(--yellow);margin:16px 0}
+    .kit-card ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.7;font-size:15px}
+
+    .badge-popular{
+      position:absolute;
+      top:18px;
+      right:18px;
+      z-index:2;
+      background:linear-gradient(90deg,var(--yellow),var(--orange));
+      color:#050505;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+    }
+
+    #campoTallaCiclista,
+    #campoTallaStaff{
+      scroll-margin-top:90px;
+    }
+
+    .checkbox{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-top:26px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+    }
+
+    .checkbox input{width:18px;height:18px;margin-top:4px;flex:0 0 auto;accent-color:var(--yellow)}
+    .checkbox label{margin:0;font-weight:500;line-height:1.6;color:#e7ebf2}
+
+    button{
+      width:100%;
+      margin-top:30px;
+      padding:18px;
+      border:0;
+      border-radius:18px;
+      background:linear-gradient(90deg,var(--yellow),var(--orange),var(--blue));
+      color:#030303;
+      font-size:17px;
+      font-weight:950;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+
+    .success{
+      display:none;
+      margin-top:30px;
+      padding:36px 28px;
+      border-radius:28px;
+      background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(16,185,129,.10));
+      border:2px solid rgba(74,222,128,.45);
+      color:#f0fdf4;
+      text-align:center;
+      box-shadow:0 28px 70px rgba(0,0,0,.45);
+    }
+
+    .success h3{margin:0 0 16px;font-size:38px;color:#4ade80;text-transform:uppercase;letter-spacing:1px}
+    .success p{margin:0;font-size:19px;line-height:1.8;color:#f0fdf4}
+
+    footer{
+      background:#000;
+      border-top:1px solid var(--line);
+      padding:36px 20px;
+      text-align:center;
+      color:#94a3b8;
+    }
+
+    .contact-img{max-width:420px;margin:0 auto 28px}
+    .contact-img img{width:100%;border-radius:28px;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.45);display:block}
+
+    @media(max-width:980px){
+      .wrap{width:min(100% - 24px,1180px)}
+      .nav-links{display:none}
+      .nav-inner{justify-content:center;min-height:66px}
+      .nav-brand span{display:none}
+      .nav-brand img{width:120px}
+
+      .hero{
+        min-height:auto;
+        padding:40px 0 46px;
+        background:
+          linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.96)),
+          url("hero-banner-300km.png") top center / 130% auto no-repeat;
+      }
+
+      .hero-grid{grid-template-columns:1fr;text-align:center;gap:28px}
+      .hero h1{font-size:clamp(40px,13vw,64px);letter-spacing:-1px;line-height:.95}
+      .hero p{font-size:15px;line-height:1.6;margin-left:auto;margin-right:auto}
+      .route-tag{margin:20px 0 24px;font-size:13px;display:block}
+      .hero-actions{justify-content:center;margin-bottom:28px;flex-direction:column;align-items:center}
+      .btn{width:100%;max-width:320px}
+      .hero-visual{display:none}
+
+      .stats,
+      .distance-grid,
+      .info-grid,
+      .form-grid,
+      .kit-grid,
+      .details-grid{grid-template-columns:1fr}
+
+      .section{padding:44px 0}
+      .section-title h2{font-size:34px;line-height:1.1}
+      .section-title p{font-size:15px}
+      .event-story{padding:24px 18px;border-radius:24px}
+      .event-story img{width:130px}
+      .event-story h3{font-size:22px;line-height:1.2}
+      .event-story p{font-size:15px;line-height:1.65}
+      .distance-card{min-height:auto;border-radius:24px}
+      .distance-content{padding:24px}
+      .distance-content h3{font-size:28px}
+      .distance-content p{font-size:14px}
+      .detail-card,.info-card{width:100%;border-radius:22px;padding:22px}
+      .detail-card h3{font-size:21px}
+      .detail-card p,.detail-card li{font-size:15px}
+      .event-data strong{display:block;min-width:0;margin-bottom:4px}
+      .form-card{padding:22px 16px;border-radius:24px}
+      form h2{font-size:20px;line-height:1.2}
+      input,select,textarea{font-size:16px}
+      .kit-grid{gap:18px}
+      .kit-card{border-radius:24px;min-height:auto!important;height:auto!important}
+      .kit-card h3{font-size:24px}
+      .precio{font-size:34px;margin:14px 0}
+      .kit-body{padding:24px}
+      .kit-card ul{margin-bottom:0;padding-bottom:0}
+      #campoTallaCiclista,
+      #campoTallaStaff{
+        margin-top:18px;
+        padding:18px;
+        border-radius:18px;
+        background:rgba(255,255,255,.045);
+        border:1px solid var(--line);
+      }
+      .checkbox{padding:14px}
+      button{padding:18px;font-size:16px}
+      .contact-img{max-width:320px}
+    }
+  </style>
 </head>
 
 <body>
-
-<header class="hero">
-
-<div class="wrap hero-grid">
-
-<div>
-
-<div class="eyebrow">
-Registro oficial
-</div>
-
-<h1>
-Reto <span>300 KM</span>
-</h1>
-
-<p>
-Una ruta. Una decisión.
-Completa tu registro para participar
-como ciclista, voluntario o carro de apoyo.
-</p>
-
-<span class="route-tag">
-Otay - Bufadora - Otay
-</span>
-
-<div class="hero-actions">
-
-<a href="#registro" class="btn btn-primary">
-Registrarme
-</a>
-
-<a href="#detalle-info" class="btn btn-secondary">
-Ver información
-</a>
-
-<a href="#kits-preview" class="btn btn-secondary">
-Ver kit oficial
-</a>
-
-<a href="#costos-section" class="btn btn-secondary">
-Costos
-</a>
-
-</div>
-
-<div class="stats">
-
-<a href="#evento" class="stat">
-<strong>Distancias</strong>
-<span>150 KM / 300 KM</span>
-</a>
-
-<div class="stat">
-<strong>Ruta</strong>
-<span>Otay – Bufadora – Otay</span>
-</div>
-
-<div class="stat">
-<strong>Modalidad</strong>
-<span>Autosuficiencia</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</header>
-
-<section id="evento" class="section">
-
-<div class="wrap">
-
-<div class="section-title">
-
-<h2>
-Elige tu reto
-</h2>
-
-<p>
-Dos distancias, una misma experiencia:
-resistencia, comunidad y orgullo OTAY Night Riders.
-</p>
-
-</div>
-
-<div class="event-story">
-
-<img
-src="logo-otay-night-riders.png"
-alt="OTAY Night Riders"
->
-
-<h3>
-4ta edición • OTAY Night Riders
-</h3>
-
-<p>
-Un evento de ciclismo que no es solo un reto:
-es una travesía por lo mejor de Baja.
-</p>
-
-<p class="closing">
-Aquí no se trata de velocidad…
-se trata de corazón.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="costos-section" class="section">
-
-<div class="wrap">
-
-<div class="section-title">
-
-<h2>
-Costos oficiales
-</h2>
-
-</div>
-
-<div class="kit-grid">
-
-<div class="kit-card">
-
-<div class="kit-body">
-
-<span class="kit-label">
-Registro
-</span>
-
-<h3>
-Inscripción e hidratación
-</h3>
-
-<p class="precio">
-$300
-</p>
-
-</div>
-
-</div>
-
-<div class="kit-card">
-
-<div class="kit-body">
-
-<span class="kit-label">
-Finisher
-</span>
-
-<h3>
-Playera y medalla
-</h3>
-
-<p class="precio">
-$350
-</p>
-
-</div>
-
-</div>
-
-<div class="kit-card">
-
-<div class="kit-body">
-
-<span class="kit-label">
-Full Experience
-</span>
-
-<h3>
-Kit completo
-</h3>
-
-<p class="precio">
-$585
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<div class="wrap">
-
-<div class="details-grid" id="detalle-info">
-
-<div class="detail-card">
-
-<h3>
-Información del evento
-</h3>
-
-<div class="event-data">
-
-<div>
-<strong>Evento:</strong>
-300 KM Otay - Bufadora - Otay
-</div>
-
-<div>
-<strong>Organiza:</strong>
-OTAY Night Riders
-</div>
-
-<div>
-<strong>Fecha:</strong>
-27 de junio de 2026
-</div>
-
-<div>
-<strong>Ubicación:</strong>
-Circuito del Árbol
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<main id="registro" class="section">
-
-<div class="wrap">
-
-<form id="registroForm" class="form-card">
-
-<h2>
-Tipo de participación
-</h2>
-
-<label>
-Participación
-
-<select id="participacion" name="participacion" required>
-<option value="">Selecciona</option>
-<option value="Ciclista">Ciclista</option>
-<option value="Voluntario / Carro de apoyo">Voluntario / Carro de apoyo</option>
-</select>
-
-</label>
-
-<section id="seccionCiclista" class="hidden">
-
-<h2>
-Kits
-</h2>
-
-<div class="kit-grid">
-
-<div class="kit-card">
-
-<div class="kit-select">
-<input type="radio" name="kit" value="Inscripción e hidratación — $300">
-</div>
-
-<div class="kit-body">
-
-<span class="kit-label">
-Registro
-</span>
-
-<h3>
-Inscripción e hidratación
-</h3>
-
-<p class="precio">
-$300
-</p>
-
-</div>
-
-</div>
-
-<div class="kit-card">
-
-<div class="kit-select">
-<input type="radio" name="kit" value="Playera y medalla — $350">
-</div>
-
-<div class="kit-body">
-
-<span class="kit-label">
-Finisher
-</span>
-
-<h3>
-Playera y medalla
-</h3>
-
-<p class="precio">
-$350
-</p>
-
-</div>
-
-</div>
-
-<div class="kit-card">
-
-<div class="kit-select">
-<input type="radio" name="kit" value="Kit completo — $585">
-</div>
-
-<div class="kit-body">
-
-<span class="kit-label">
-Full Experience
-</span>
-
-<h3>
-Kit completo
-</h3>
-
-<p class="precio">
-$585
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="campoTallaCiclista" class="hidden">
-
-<label>
-
-Talla de playera
-
-<select name="talla_ciclista">
-
-<option value="">Selecciona talla</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-<option>XXL</option>
-
-</select>
-
-</label>
-
-</div>
-
-</section>
-
-<section id="seccionVoluntario" class="hidden">
-
-<h2>
-Playera y medalla Staff
-</h2>
-
-<div class="kit-grid">
-
-<div class="kit-card">
-
-<div class="kit-select">
-<input type="radio" name="staff_extra" value="No deseo adquirir">
-</div>
-
-<div class="kit-body">
-
-<h3>
-No deseo adquirir
-</h3>
-
-<p class="precio">
-$0
-</p>
-
-</div>
-
-</div>
-
-<div class="kit-card">
-
-<div class="kit-select">
-<input type="radio" name="staff_extra" value="Playera oficial — $200">
-</div>
-
-<div class="kit-body">
-
-<h3>
-Playera oficial
-</h3>
-
-<p class="precio">
-$200
-</p>
-
-</div>
-
-</div>
-
-<div class="kit-card">
-
-<div class="kit-select">
-<input type="radio" name="staff_extra" value="Medalla finisher — $150">
-</div>
-
-<div class="kit-body">
-
-<h3>
-Medalla finisher
-</h3>
-
-<p class="precio">
-$150
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="campoTallaStaff" class="hidden">
-
-<label>
-
-Talla playera staff
-
-<select id="tallaStaff" name="talla_staff">
-
-<option value="">Selecciona talla</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-<option>XXL</option>
-
-</select>
-
-</label>
-
-</div>
-
-</section>
-
-<div class="checkbox">
-
-<input
-type="checkbox"
-required
->
-
-<label>
-Acepto términos y condiciones
-</label>
-
-</div>
-
-<button type="submit">
-Enviar registro
-</button>
-
-<div id="mensajeExito" class="success">
-
-<h3>
-¡Registro enviado!
-</h3>
-
-<p>
-Tu registro fue recibido correctamente.
-</p>
-
-</div>
-
-</form>
-
-</div>
-
-</main>
-
-<script>
-
-const participacion =
-document.getElementById("participacion");
-
-const seccionCiclista =
-document.getElementById("seccionCiclista");
-
-const seccionVoluntario =
-document.getElementById("seccionVoluntario");
-
-const form =
-document.getElementById("registroForm");
-
-const mensajeExito =
-document.getElementById("mensajeExito");
-
-const campoTallaCiclista =
-document.getElementById("campoTallaCiclista");
-
-const campoTallaStaff =
-document.getElementById("campoTallaStaff");
-
-const tallaStaff =
-document.getElementById("tallaStaff");
-
-participacion.addEventListener("change", () => {
-
-seccionCiclista.classList.add("hidden");
-seccionVoluntario.classList.add("hidden");
-
-if(
-participacion.value === "Ciclista"
-){
-seccionCiclista.classList.remove("hidden");
-}
-
-if(
-participacion.value === "Voluntario / Carro de apoyo"
-){
-seccionVoluntario.classList.remove("hidden");
-}
-
-});
-
-function validarTallaCiclista(){
-
-const kit =
-document.querySelector('input[name="kit"]:checked');
-
-const tallaCiclista =
-document.querySelector('select[name="talla_ciclista"]');
-
-if(
-!kit ||
-kit.value === "Inscripción e hidratación — $300"
-){
-
-campoTallaCiclista.classList.add("hidden");
-
-tallaCiclista.required = false;
-
-tallaCiclista.value = "";
-
-}else{
-
-campoTallaCiclista.classList.remove("hidden");
-
-tallaCiclista.required = true;
-
-setTimeout(() => {
-
-campoTallaCiclista.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-},250);
-
-}
-
-}
-
-document.querySelectorAll(
-'input[name="kit"]'
-).forEach((radio)=>{
-
-radio.addEventListener(
-"change",
-validarTallaCiclista
-);
-
-});
-
-function validarTallaStaff(){
-
-const opcion =
-document.querySelector(
-'input[name="staff_extra"]:checked'
-);
-
-if(
-opcion &&
-opcion.value === "Playera oficial — $200"
-){
-
-campoTallaStaff.classList.remove("hidden");
-
-tallaStaff.required = true;
-
-setTimeout(()=>{
-
-campoTallaStaff.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-},250);
-
-}else{
-
-campoTallaStaff.classList.add("hidden");
-
-tallaStaff.required = false;
-
-tallaStaff.value = "";
-
-}
-
-}
-
-document.querySelectorAll(
-'input[name="staff_extra"]'
-).forEach((radio)=>{
-
-radio.addEventListener(
-"change",
-validarTallaStaff
-);
-
-});
-
-const WEB_APP_URL =
-"https://script.google.com/macros/s/TU_URL/exec";
-
-form.addEventListener("submit", async (e) => {
-
-e.preventDefault();
-
-const botonEnviar =
-form.querySelector('button[type="submit"]');
-
-botonEnviar.disabled = true;
-
-botonEnviar.innerHTML =
-"⏳ Enviando registro...";
-
-botonEnviar.style.opacity = "0.7";
-
-botonEnviar.style.cursor = "not-allowed";
-
-const formData = new FormData(form);
-
-try {
-
-await fetch(WEB_APP_URL, {
-method:"POST",
-mode:"no-cors",
-body:formData
-});
-
-form.reset();
-
-seccionCiclista.classList.add("hidden");
-seccionVoluntario.classList.add("hidden");
-
-campoTallaCiclista.classList.add("hidden");
-campoTallaStaff.classList.add("hidden");
-
-mensajeExito.style.display = "block";
-
-mensajeExito.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-} catch(error){
-
-alert(
-"Ocurrió un error al enviar el registro."
-);
-
-} finally {
-
-botonEnviar.disabled = false;
-
-botonEnviar.innerHTML =
-"Enviar registro";
-
-botonEnviar.style.opacity = "1";
-
-botonEnviar.style.cursor = "pointer";
-
-}
-
-});
-
-</script>
-
+  <nav class="navbar">
+    <div class="wrap nav-inner">
+      <a href="#inicio" class="nav-brand">
+        <img src="logo-otay-night-riders.png" alt="OTAY Night Riders" />
+        <span>OTAY Night Riders</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#evento">Evento</a>
+        <a href="#kits-preview">Kits</a>
+        <a href="#costos-section">Costos</a>
+        <a href="#registro">Registro</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#registro" class="nav-cta">Regístrate</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Registro oficial</div>
+        <h1>Reto <span>300 KM - 2026</span></h1>
+        <p>Una ruta. Una decisión. Completa tu registro para participar como ciclista, voluntario o carro de apoyo.</p>
+        <span class="route-tag">Otay - Bufadora - Otay</span>
+
+        <div class="hero-actions">
+          <a href="#registro" class="btn btn-primary">Registrarme</a>
+          <a href="#detalle-info" class="btn btn-secondary">Ver información</a>
+          <a href="#kits-preview" class="btn btn-secondary">Ver kit oficial</a>
+          <a href="#costos-section" class="btn btn-secondary">Costos</a>
+        </div>
+
+        <div class="stats">
+          <a href="#evento" class="stat">
+            <strong>Distancias</strong><span>150 KM / 300 KM</span>
+          </a>
+          <div class="stat"><strong>Ruta</strong><span>Otay – Bufadora – Otay</span></div>
+          <div class="stat"><strong>Modalidad</strong><span>Autosuficiencia</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <a href="#detalle-info" class="visual-card" style="position:relative;display:block;overflow:hidden;">
+          <img src="banner-150km.png" alt="150 KM" />
+          <div style="position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));">
+            <div style="color:#21b8ff;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Distancia alternativa</div>
+            <div style="font-size:34px;font-weight:900;color:#fff;margin-top:6px;">150 KM</div>
+            <div style="color:#dbe4ef;margin-top:8px;line-height:1.6;">150 KM de aventura. Donde empiezas con emoción y terminas con orgullo.</div>
+          </div>
+        </a>
+
+        <a href="#detalle-info" class="visual-card" style="position:relative;display:block;overflow:hidden;">
+          <img src="banner-300km-ruta.png" alt="300 KM" />
+          <div style="position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));">
+            <div style="color:#ffd400;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Reto principal</div>
+            <div style="font-size:34px;font-weight:900;color:#fff;margin-top:6px;">300 KM</div>
+            <div style="color:#dbe4ef;margin-top:8px;line-height:1.6;">Una ruta. Una decisión. Para ciclistas que buscan superar sus límites.</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section id="evento" class="section">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Elige tu reto</h2>
+        <p>Dos distancias, una misma experiencia: resistencia, comunidad y orgullo OTAY Night Riders.</p>
+      </div>
+
+      <div class="event-story">
+        <img src="logo-otay-night-riders.png" alt="OTAY Night Riders" />
+        <h3>4ta edición • OTAY Night Riders</h3>
+        <p>Un evento de ciclismo que no es solo un reto: es una travesía por lo mejor de Baja. Un recorrido épico pasando por Tijuana, Rosarito, La Misión, Valle y Ensenada, hasta conquistar La Bufadora.</p>
+        <p>Este evento está dirigido a ciclistas con experiencia en distancias largas, que deseen poner a prueba su resistencia, disciplina y pasión por el ciclismo.</p>
+        <p class="closing">Aquí no se trata de velocidad… se trata de corazón.</p>
+
+        <div style="margin-top:28px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+          <a href="#registro" class="btn btn-primary">Quiero registrarme</a>
+          <a href="#kits-preview" class="btn btn-secondary">Ver kits</a>
+        </div>
+      </div>
+
+      <div id="kits-preview" class="section-title" style="margin-top:70px;">
+        <h2>Kits oficiales</h2>
+        <p>Selecciona la experiencia que deseas vivir durante el reto OTAY - Bufadora - OTAY.</p>
+      </div>
+
+      <div class="distance-grid" style="margin-bottom:40px;">
+        <a href="#costos-section" class="distance-card">
+          <div class="distance-content">
+            <span>Finisher oficial</span>
+            <h3>Playera oficial</h3>
+            <p>Diseño exclusivo edición 2026 para participantes del reto.</p>
+          </div>
+        </a>
+
+        <a href="#costos-section" class="distance-card">
+          <div class="distance-content">
+            <span>Reconocimiento</span>
+            <h3>Medalla finisher</h3>
+            <p>Conquista la ruta y llévate tu medalla oficial del evento.</p>
+          </div>
+        </a>
+      </div>
+
+      <section id="costos-section" class="section" style="padding-top:20px;">
+        <div class="section-title">
+          <h2>Costos oficiales</h2>
+          <p>Selecciona la experiencia que deseas vivir durante el reto OTAY - Bufadora - OTAY.</p>
+        </div>
+
+        <div class="kit-grid">
+          <div class="kit-card">
+            <div class="kit-body">
+              <span class="kit-label">Registro</span>
+              <h3>Inscripción e hidratación</h3>
+              <p class="precio">$300</p>
+              <ul>
+                <li>Registro al evento</li>
+                <li>Puntos de hidratación</li>
+                <li>Apoyo durante la ruta</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kit-card">
+            <div class="kit-body">
+              <span class="kit-label">Finisher</span>
+              <h3>Playera y medalla</h3>
+              <p class="precio">$350</p>
+              <ul>
+                <li>Playera oficial del evento</li>
+                <li>Medalla finisher oficial</li>
+                <li>Diseño exclusivo edición 2026</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kit-card">
+            <span class="badge-popular">Más completo</span>
+            <div class="kit-body">
+              <span class="kit-label">Full experience</span>
+              <h3>Kit completo</h3>
+              <p class="precio">$585</p>
+              <ul>
+                <li>Registro al evento</li>
+                <li>Puntos de hidratación</li>
+                <li>Playera oficial</li>
+                <li>Medalla finisher</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="info-grid">
+        <a href="#registro" class="info-card"><h3>🚴 Ciclistas</h3><p>Registro para participantes de 150 KM o 300 KM.</p></a>
+        <a href="#registro" class="info-card"><h3>🚗 Apoyo</h3><p>Registro para voluntarios y carros de apoyo.</p></a>
+        <div class="info-card"><h3>💧 Hidratación</h3><p>Carros de apoyo con hidratación y snacks durante el recorrido.</p></div>
+        <a href="#kits-preview" class="info-card"><h3>🏁 Finisher</h3><p>Playera oficial y medalla del evento.</p></a>
+      </div>
+
+      <div class="details-grid" id="detalle-info">
+        <div class="detail-card">
+          <h3>Datos importantes</h3>
+          <p>Este reto puede realizarse en dos modalidades: <strong>150 KM</strong> o <strong>300 KM</strong>. No es un paseo para principiantes.</p>
+          <ul>
+            <li><strong>150 KM:</strong> nivel intermedio / avanzado.</li>
+            <li><strong>300 KM:</strong> nivel avanzado.</li>
+          </ul>
+          <p>Es indispensable contar con buena salud, condición física y preparación adecuada.</p>
+        </div>
+
+        <div class="detail-card">
+          <h3>Responsabilidad del participante</h3>
+          <ul>
+            <li>Cada ciclista es responsable de su propia seguridad.</li>
+            <li>Es obligatorio ser autosuficiente.</li>
+            <li>Llevar herramientas básicas, kit de reparación y al menos una cámara extra.</li>
+            <li>Cada participante es responsable de su regreso al finalizar el evento.</li>
+          </ul>
+        </div>
+
+        <div class="detail-card">
+          <h3>Grupos y descansos</h3>
+          <p>Se realizarán 3 grupos:</p>
+          <ul>
+            <li><strong>Grupo A:</strong> avanzados.</li>
+            <li><strong>Grupo B:</strong> intermedios.</li>
+            <li><strong>Grupo C:</strong> intermedios.</li>
+          </ul>
+          <p>Se realizarán descansos cada <strong>50 KM</strong>.</p>
+        </div>
+
+        <div class="detail-card">
+          <h3>Requisitos indispensables</h3>
+          <ul>
+            <li>Bicicleta de ruta en óptimas condiciones.</li>
+            <li>Uso de casco obligatorio durante toda la ruta.</li>
+            <li>Luces frontal y trasera obligatorias.</li>
+            <li>Kit de herramientas y cámara de repuesto obligatorios.</li>
+          </ul>
+        </div>
+
+        <div class="detail-card">
+          <h3>Información del evento</h3>
+          <div class="event-data">
+            <div><strong>Evento:</strong> 300 KM Otay - Bufadora - Otay</div>
+            <div><strong>Organiza:</strong> OTAY Night Riders</div>
+            <div><strong>Fecha:</strong> 27 de junio de 2026</div>
+            <div><strong>Ubicación:</strong> Circuito del Árbol</div>
+            <div><strong>Disciplina:</strong> Ruta</div>
+            <div><strong>Modalidad:</strong> Paseo</div>
+            <div><strong>Nivel:</strong> Intermedio / Avanzado</div>
+            <div><strong>Altimetría:</strong> 1649 m Otay - Bufadora</div>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <h3>Ubicación</h3>
+          <p><strong>Fovissste 5, 22450 Tijuana, Baja California</strong></p>
+          <p><a class="map-link" href="https://maps.app.goo.gl/ADJGKNK7MTMFDBCS9" target="_blank">Ver ubicación en Google Maps</a></p>
+
+          <div style="margin-top:18px;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.10);box-shadow:0 18px 40px rgba(0,0,0,.35);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1830.8288495973263!2d-116.9387444857924!3d32.53287936074663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d947745824ee39%3A0x4fac4654ba7f5a3c!2sFovissste%205%2C%2022450%20Tijuana%2C%20B.C.!5e0!3m2!1ses-419!2smx!4v1778541908997!5m2!1ses-419!2smx"
+              width="100%"
+              height="320"
+              style="border:0;display:block;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <p style="margin-top:18px;">El punto de reunión será informado y confirmado por el grupo oficial de WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="registro" class="form-section">
+    <div class="wrap">
+      <form id="registroForm" class="form-card">
+        <h2>Tipo de participación</h2>
+
+        <label for="participacion">
+          ¿Cuál será tu participación?
+          <select id="participacion" name="participacion" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Ciclista">Ciclista</option>
+            <option value="Voluntario / Carro de apoyo">Voluntario / Carro de apoyo</option>
+          </select>
+          <small class="field-help">Selecciona si participarás pedaleando o apoyando en la logística del evento.</small>
+        </label>
+
+        <section id="seccionCiclista" class="hidden">
+          <h2>Datos personales – Ciclista</h2>
+
+          <div class="form-grid">
+            <label>
+              Nombre completo
+              <input type="text" name="nombre_ciclista" data-required="true" placeholder="Ej: Gisela Ríos Villa">
+              <small class="field-help">Escribe tu nombre como quieres que aparezca en el registro.</small>
+            </label>
+
+            <label>
+              Fecha de nacimiento
+              <input type="date" id="fechaNacimiento" name="fecha_nacimiento" data-required="true">
+              <small class="field-help">Selecciona tu fecha de nacimiento.</small>
+            </label>
+
+            <label>
+              Edad
+              <input type="number" id="edadCalculada" name="edad" readonly placeholder="Se calculará automáticamente">
+              <small class="field-help">La edad se calcula automáticamente con tu fecha de nacimiento.</small>
+            </label>
+
+            <label>
+              Número de WhatsApp
+              <input type="tel" name="whatsapp_ciclista" data-required="true" placeholder="Ej: 6641234567">
+              <small class="field-help">Número donde se te enviará información del evento.</small>
+            </label>
+
+            <label>
+              Correo electrónico
+              <input type="email" name="correo_ciclista" data-required="true" placeholder="Ej: correo@dominio.com">
+              <small class="field-help">Correo donde recibirás información de pago y detalles del kit.</small>
+            </label>
+
+            <label>
+              Ciudad de residencia
+              <input type="text" name="ciudad" data-required="true" placeholder="Ej: Tijuana">
+              <small class="field-help">Indica la ciudad donde resides actualmente.</small>
+            </label>
+
+            <label>
+              Equipo o club al que perteneces
+              <input type="text" name="club" data-required="true" placeholder="Ej: OTAY Night Riders / Independiente">
+              <small class="field-help">Si no perteneces a un club, escribe “Independiente”.</small>
+            </label>
+          </div>
+
+          <h2>Información del reto</h2>
+
+          <div class="form-grid">
+            <label>
+              ¿Qué distancia realizarás?
+              <select name="distancia" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>150 KM</option>
+                <option>300 KM</option>
+              </select>
+              <small class="field-help">Selecciona la distancia que planeas completar.</small>
+            </label>
+
+            <label>
+              ¿Desde dónde deseas salir?
+              <select name="salida" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>Oficina</option>
+                <option>Rosarito</option>
+              </select>
+              <small class="field-help">Selecciona el punto de salida que utilizarás.</small>
+            </label>
+          </div>
+
+          <label>
+            ¿Llevarás carro de apoyo personal?
+            <select id="carroPersonal" name="carro_apoyo_personal" data-required="true">
+              <option value="">Selecciona una opción</option>
+              <option value="Sí">Sí</option>
+              <option value="No">No</option>
+            </select>
+            <small class="field-help">Indica si llevarás un vehículo propio que te acompañe en la ruta.</small>
+          </label>
+
+          <div id="datosCarroPersonal" class="hidden">
+            <div class="form-grid">
+              <label>
+                Nombre del conductor
+                <input type="text" name="nombre_conductor" data-carro-required="true" placeholder="Ej: Juan Pérez">
+                <small class="field-help">Persona que conducirá tu vehículo de apoyo.</small>
+              </label>
+
+              <label>
+                Marca y modelo del vehículo
+                <input type="text" name="vehiculo_personal" data-carro-required="true" placeholder="Ej: Toyota Tacoma blanca">
+                <small class="field-help">Describe el vehículo para identificarlo durante la ruta.</small>
+              </label>
+            </div>
+          </div>
+
+          <h2 id="kits">Kits</h2>
+
+          <label>
+            Selecciona una opción de kit
+            <small class="field-help">Elige el paquete que deseas adquirir para el evento.</small>
+          </label>
+
+          <div class="kit-grid">
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="kit" value="Inscripción e hidratación — $300" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Registro</span>
+                <h3>Inscripción e hidratación</h3>
+                <p class="precio">$300</p>
+                <ul>
+                  <li>Registro al evento</li>
+                  <li>Puntos de hidratación</li>
+                  <li>Apoyo durante la ruta</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="kit" value="Playera y medalla — $350" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Finisher</span>
+                <h3>Playera y medalla</h3>
+                <p class="precio">$350</p>
+                <ul>
+                  <li>Playera oficial del evento</li>
+                  <li>Medalla finisher oficial</li>
+                  <li>Diseño exclusivo edición 2026</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="kit-card">
+              <span class="badge-popular">Más completo</span>
+              <div class="kit-select">
+                <input type="radio" name="kit" value="Kit completo — $585" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Full experience</span>
+                <h3>Kit completo</h3>
+                <p class="precio">$585</p>
+                <ul>
+                  <li>Registro al evento</li>
+                  <li>Puntos de hidratación</li>
+                  <li>Playera oficial</li>
+                  <li>Medalla finisher</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="campoTallaCiclista" class="hidden">
+            <label>
+              Talla de playera
+              <select name="talla_ciclista">
+                <option value="">Selecciona una talla</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+              </select>
+              <small class="field-help">Solo aparece cuando tu kit incluye playera. Las playeras son corte unisex/hombre.</small>
+            </label>
+          </div>
+
+          <div class="note">Si eliges solo inscripción e hidratación, no se solicitará talla de playera.</div>
+
+          <h2>Información médica</h2>
+
+          <div class="form-grid">
+            <label>
+              ¿Cuentas con servicio médico?
+              <select name="servicio_medico" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>IMSS</option>
+                <option>ISSSTE</option>
+                <option>Seguro Particular</option>
+                <option>Otro</option>
+                <option>No cuento con servicio médico</option>
+              </select>
+              <small class="field-help">Selecciona el tipo de servicio médico con el que cuentas.</small>
+            </label>
+
+            <label>
+              Número de seguro social / póliza
+              <input type="text" name="numero_seguro" data-required="true" placeholder="Ej: NSS, póliza o escribe No aplica">
+              <small class="field-help">Escribe tu número de seguro, póliza o “No aplica”.</small>
+            </label>
+
+            <label>
+              Tipo de sangre
+              <select name="tipo_sangre" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>No lo sé</option>
+              </select>
+              <small class="field-help">Selecciona tu tipo de sangre si lo conoces.</small>
+            </label>
+          </div>
+
+          <label>
+            ¿Padeces alguna condición médica relevante?
+            <textarea name="condicion_medica" data-required="true" placeholder="Ej: Asma, diabetes, alergias, medicamentos importantes o escribe No aplica"></textarea>
+            <small class="field-help">Esta información ayuda en caso de emergencia durante el evento.</small>
+          </label>
+
+          <h2>Contacto de emergencia</h2>
+
+          <div class="form-grid">
+            <label>
+              Nombre completo del contacto de emergencia
+              <input type="text" name="contacto_emergencia" data-required="true" placeholder="Ej: María López">
+              <small class="field-help">Persona a contactar en caso de emergencia.</small>
+            </label>
+
+            <label>
+              Relación / parentesco
+              <select name="parentesco" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>Madre</option>
+                <option>Padre</option>
+                <option>Hermano/a</option>
+                <option>Esposo/a</option>
+                <option>Pareja</option>
+                <option>Amigo/a</option>
+                <option>Otro</option>
+              </select>
+              <small class="field-help">Indica la relación con tu contacto de emergencia.</small>
+            </label>
+
+            <label>
+              Número telefónico del contacto de emergencia
+              <input type="tel" name="telefono_emergencia" data-required="true" placeholder="Ej: 6641234567">
+              <small class="field-help">Número al que se llamará si ocurre una emergencia.</small>
+            </label>
+          </div>
+
+          <div class="note">Este es un reto de autosuficiencia. Cada participante es responsable de su condición física, alimentación, hidratación, seguridad y equipo durante el recorrido.</div>
+        </section>
+
+        <section id="seccionVoluntario" class="hidden">
+          <h2>Datos personales – Voluntario / Carro de apoyo</h2>
+
+          <div class="form-grid">
+            <label>
+              Nombre completo
+              <input type="text" name="nombre_voluntario" data-required="true" placeholder="Ej: Gisela Ríos Villa">
+              <small class="field-help">Escribe tu nombre completo.</small>
+            </label>
+
+            <label>
+              Número de WhatsApp
+              <input type="tel" name="whatsapp_voluntario" data-required="true" placeholder="Ej: 6641234567">
+              <small class="field-help">Número para coordinar la logística del evento.</small>
+            </label>
+
+            <label>
+              Correo electrónico
+              <input type="email" name="correo_voluntario" data-required="true" placeholder="Ej: correo@dominio.com">
+              <small class="field-help">Correo para enviarte información del evento.</small>
+            </label>
+
+            <label>
+              Equipo o grupo al que pertenece
+              <input type="text" name="grupo_voluntario" data-required="true" placeholder="Ej: ONR / Independiente">
+              <small class="field-help">Si no perteneces a un grupo, escribe “Independiente”.</small>
+            </label>
+          </div>
+
+          <h2>Información del carro de apoyo</h2>
+
+          <div class="form-grid">
+            <label>
+              ¿Cuentas con rack para bicicleta?
+              <select name="rack" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>Sí</option>
+                <option>No</option>
+              </select>
+              <small class="field-help">Indica si tu vehículo puede transportar bicicletas.</small>
+            </label>
+
+            <label>
+              ¿Tu vehículo se encuentra en buenas condiciones?
+              <select name="vehiculo_buenas_condiciones" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>Sí</option>
+                <option>No</option>
+              </select>
+              <small class="field-help">Confirma si el vehículo puede realizar el acompañamiento sin problema.</small>
+            </label>
+
+            <label>
+              Capacidad aproximada de bicicletas
+              <input type="number" name="capacidad_bicicletas" min="0" data-required="true" placeholder="Ej: 2, 3, 4">
+              <small class="field-help">Número aproximado de bicicletas que podrías transportar.</small>
+            </label>
+          </div>
+
+          <div class="note"><strong>Apoyo incluye:</strong><br>1 bolsa de hielo, 10 electrolitos por carro, $500 pesos para viáticos y playera Staff / Voluntario.</div>
+          <div class="note"><strong>Requisitos:</strong><br>Hielera, viáticos adicionales, carro en buen estado y rack.</div>
+
+          <h2>Playera y medalla Staff</h2>
+
+          <label>
+            Selecciona una opción
+            <small class="field-help">Elige si deseas adquirir artículo adicional como staff/voluntario.</small>
+          </label>
+
+          <div class="kit-grid">
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="No deseo adquirir playera ni medalla" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Voluntario</span>
+                <h3>No deseo adquirir</h3>
+                <p class="precio">$0</p>
+                <ul>
+                  <li>Solo participaré como voluntario / carro de apoyo</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="Deseo playera oficial — $200" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Playera</span>
+                <h3>Playera oficial</h3>
+                <p class="precio">$200</p>
+                <ul>
+                  <li>Playera oficial Staff / Voluntario</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="Deseo medalla finisher — $150" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Medalla</span>
+                <h3>Medalla finisher</h3>
+                <p class="precio">$150</p>
+                <ul>
+                  <li>Medalla oficial del evento</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="campoTallaStaff" class="hidden">
+            <label>
+              Talla de playera Staff / Voluntario
+              <select id="tallaStaff" name="talla_staff">
+                <option value="">Selecciona una talla</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+              </select>
+              <small class="field-help">Solo aparece si seleccionas playera oficial.</small>
+            </label>
+          </div>
+
+          <div class="note">Las playeras son corte unisex/hombre.</div>
+          <div class="note">Los carros de apoyo y voluntarios son fundamentales para la seguridad y logística del evento.</div>
+        </section>
+
+        <div class="checkbox">
+          <input type="checkbox" id="acepto" name="acepto_responsabilidad" required>
+          <label for="acepto" id="textoResponsabilidad">Declaro que la información proporcionada es correcta y acepto las condiciones de participación del evento.</label>
+        </div>
+
+        <button type="submit">Enviar registro</button>
+
+        <div id="mensajeExito" class="success">
+          <h3>¡Registro enviado con éxito!</h3>
+          <p>Tu información fue registrada correctamente.<br><br>En breve recibirás por correo electrónico información del evento, método de pago, grupo oficial de WhatsApp y detalles importantes del reto <strong>OTAY – BUFADORA – OTAY 2026</strong>.</p>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer id="contacto">
+    <a
+      href="https://chat.whatsapp.com/IooPjqqmGeiEdAsDWk59YV?mode=gi_t"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-img"
+      style="display:block;transition:.25s ease;"
+    >
+      <img src="contacto.png" alt="Grupo oficial de WhatsApp 300KM" />
+    </a>
+
+    <p><strong>OTAY Night Riders – Oficial</strong></p>
+    <p>Únete al grupo oficial de WhatsApp para información, avisos y seguimiento del evento.</p>
+
+    <a
+      href="https://chat.whatsapp.com/IooPjqqmGeiEdAsDWk59YV?mode=gi_t"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        margin-top:16px;
+        padding:14px 24px;
+        border-radius:999px;
+        background:linear-gradient(90deg,#25D366,#128C7E);
+        color:white;
+        font-weight:900;
+        text-transform:uppercase;
+        letter-spacing:1px;
+        box-shadow:0 18px 40px rgba(37,211,102,.25);
+      "
+    >
+      Unirme al grupo oficial
+    </a>
+
+    <p style="color:#21b8ff;margin-top:18px;">Otay – Bufadora – Otay | Registro oficial del evento</p>
+  </footer>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8KrfHyOLUXsLyrBwg6JRsGQ5rB5lMK48ALP3z362e_5Ksf--3oBDw/exec";
+
+    const participacion = document.getElementById("participacion");
+    const seccionCiclista = document.getElementById("seccionCiclista");
+    const seccionVoluntario = document.getElementById("seccionVoluntario");
+    const carroPersonal = document.getElementById("carroPersonal");
+    const datosCarroPersonal = document.getElementById("datosCarroPersonal");
+    const form = document.getElementById("registroForm");
+    const mensajeExito = document.getElementById("mensajeExito");
+    const textoResponsabilidad = document.getElementById("textoResponsabilidad");
+    const tallaStaff = document.getElementById("tallaStaff");
+    const fechaNacimiento = document.getElementById("fechaNacimiento");
+    const edadCalculada = document.getElementById("edadCalculada");
+    const campoTallaCiclista = document.getElementById("campoTallaCiclista");
+    const campoTallaStaff = document.getElementById("campoTallaStaff");
+
+    function setRequiredInSection(section, enabled) {
+      section.querySelectorAll("[data-required='true']").forEach((field) => {
+        field.required = enabled;
+      });
+    }
+
+    function setCarroRequired(enabled) {
+      datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach((field) => {
+        field.required = enabled;
+      });
+    }
+
+    function validarTallaCiclista() {
+      const kit = document.querySelector('input[name="kit"]:checked');
+      const tallaCiclista = document.querySelector('select[name="talla_ciclista"]');
+
+      if (!campoTallaCiclista || !tallaCiclista) return;
+
+      if (!kit || kit.value === "Inscripción e hidratación — $300") {
+        campoTallaCiclista.classList.add("hidden");
+        tallaCiclista.required = false;
+        tallaCiclista.value = "";
+      } else {
+        campoTallaCiclista.classList.remove("hidden");
+        tallaCiclista.required = true;
+
+        setTimeout(() => {
+          campoTallaCiclista.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 250);
+      }
+    }
+
+    function validarTallaStaff() {
+      if (!tallaStaff || !campoTallaStaff) return;
+
+      const opcion = document.querySelector('input[name="staff_extra"]:checked');
+
+      if (!opcion) {
+        campoTallaStaff.classList.add("hidden");
+        tallaStaff.required = false;
+        tallaStaff.value = "";
+        return;
+      }
+
+      if (opcion.value === "Deseo playera oficial — $200") {
+        campoTallaStaff.classList.remove("hidden");
+        tallaStaff.required = true;
+
+        setTimeout(() => {
+          campoTallaStaff.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 250);
+
+      } else {
+        campoTallaStaff.classList.add("hidden");
+        tallaStaff.required = false;
+        tallaStaff.value = "";
+      }
+    }
+
+    function limpiarSecciones() {
+      seccionCiclista.classList.add("hidden");
+      seccionVoluntario.classList.add("hidden");
+      datosCarroPersonal.classList.add("hidden");
+
+      if (campoTallaCiclista) campoTallaCiclista.classList.add("hidden");
+      if (campoTallaStaff) campoTallaStaff.classList.add("hidden");
+
+      setRequiredInSection(seccionCiclista, false);
+      setRequiredInSection(seccionVoluntario, false);
+      setCarroRequired(false);
+
+      const tallaCiclista = document.querySelector('select[name="talla_ciclista"]');
+
+      if (tallaCiclista) {
+        tallaCiclista.required = false;
+        tallaCiclista.value = "";
+      }
+
+      if (tallaStaff) {
+        tallaStaff.required = false;
+        tallaStaff.value = "";
+      }
+    }
+
+    setRequiredInSection(seccionCiclista, false);
+    setRequiredInSection(seccionVoluntario, false);
+    setCarroRequired(false);
+
+    if (fechaNacimiento && edadCalculada) {
+      fechaNacimiento.addEventListener("change", () => {
+        const nacimiento = new Date(fechaNacimiento.value);
+
+        if (isNaN(nacimiento)) {
+          edadCalculada.value = "";
+          return;
+        }
+
+        const hoy = new Date();
+        let edad = hoy.getFullYear() - nacimiento.getFullYear();
+        const mes = hoy.getMonth() - nacimiento.getMonth();
+
+        if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+          edad--;
+        }
+
+        edadCalculada.value = edad >= 0 ? edad : "";
+      });
+    }
+
+    document.querySelectorAll('input[name="kit"]').forEach((radio) => {
+      radio.addEventListener("change", validarTallaCiclista);
+    });
+
+    document.querySelectorAll('input[name="staff_extra"]').forEach((radio) => {
+      radio.addEventListener("change", validarTallaStaff);
+    });
+
+    participacion.addEventListener("change", () => {
+      mensajeExito.style.display = "none";
+      limpiarSecciones();
+
+      if (participacion.value === "Ciclista") {
+        seccionCiclista.classList.remove("hidden");
+        setRequiredInSection(seccionCiclista, true);
+        setCarroRequired(carroPersonal.value === "Sí");
+        validarTallaCiclista();
+
+        textoResponsabilidad.innerHTML = `Declaro que participo bajo mi propia responsabilidad y confirmo que me encuentro en condiciones físicas adecuadas para realizar el reto ciclista. Entiendo que este es un evento de autosuficiencia y que los organizadores, voluntarios y patrocinadores no se hacen responsables por accidentes, lesiones, pérdidas, daños mecánicos o cualquier situación derivada durante el recorrido. Asimismo, acepto seguir las indicaciones de seguridad y mantener una conducta responsable durante toda la ruta.`;
+      }
+
+      if (participacion.value === "Voluntario / Carro de apoyo") {
+        seccionVoluntario.classList.remove("hidden");
+        setRequiredInSection(seccionVoluntario, true);
+        validarTallaStaff();
+
+        textoResponsabilidad.innerHTML = `Declaro que participaré como voluntario o carro de apoyo bajo mi propia responsabilidad y que mi vehículo se encuentra en condiciones adecuadas para realizar el acompañamiento durante el evento. Entiendo que debo mantener comunicación con los organizadores, apoyar de manera responsable en los puntos asignados y seguir las indicaciones de seguridad durante toda la ruta.`;
+      }
+    });
+
+    carroPersonal.addEventListener("change", () => {
+      if (carroPersonal.value === "Sí") {
+        datosCarroPersonal.classList.remove("hidden");
+        setCarroRequired(participacion.value === "Ciclista");
+      } else {
+        datosCarroPersonal.classList.add("hidden");
+        setCarroRequired(false);
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      formData.append("fecha_registro", new Date().toLocaleString("es-MX"));
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+
+        form.reset();
+        limpiarSecciones();
+
+        mensajeExito.style.display = "block";
+        mensajeExito.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      } catch (error) {
+        alert("Ocurrió un error al enviar el registro. Intenta nuevamente.");
+      }
+    });
+  </script>
 </body>
 </html>
