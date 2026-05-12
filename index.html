@@ -883,8 +883,8 @@
   </footer>
 
   <script>
-   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8KrfHyOLUXsLyrBwg6JRsGQ5rB5lMK48ALP3z362e_5Ksf--3oBDw/exec";
-
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8KrfHyOLUXsLyrBwg6JRsGQ5rB5lMK48ALP3z362e_5Ksf--3oBDw/exec";
+    
     const participacion = document.getElementById("participacion");
     const seccionCiclista = document.getElementById("seccionCiclista");
     const seccionVoluntario = document.getElementById("seccionVoluntario");
@@ -981,6 +981,7 @@
       try {
         await fetch(WEB_APP_URL, {
           method: "POST",
+          mode: "no-cors",
           body: formData
         });
 
