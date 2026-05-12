@@ -245,6 +245,15 @@
       border-color:rgba(255,212,0,.45);
     }
 
+    .distance-img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      display:block;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background:#050505;
+    }
+
     .distance-content{
       padding:30px;
     }
@@ -415,6 +424,37 @@
     .kit-label{color:var(--blue);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:950;margin-bottom:8px}
     .kit-card h3{margin:0;font-size:28px;line-height:1.05}
     .precio{font-size:42px;font-weight:950;color:var(--yellow);margin:16px 0}
+
+    .kit-img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:#050505;
+    }
+
+    .precio-especial{
+      margin:14px 0 0;
+      padding:9px 12px;
+      border-radius:12px;
+      background:#ff1e1e;
+      color:white;
+      font-size:13px;
+      font-weight:950;
+      text-transform:uppercase;
+      text-align:center;
+      box-shadow:0 0 22px rgba(255,0,0,.32);
+    }
+
+    .precio-normal{
+      margin:-6px 0 12px;
+      color:#ff8a8a;
+      font-size:15px;
+      font-weight:800;
+      line-height:1.45;
+    }
+
     .kit-card ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.7;font-size:15px}
 
     .badge-popular{
@@ -577,6 +617,7 @@
       .event-story h3{font-size:22px;line-height:1.2}
       .event-story p{font-size:15px;line-height:1.65}
       .distance-card{min-height:auto;border-radius:24px}
+      .distance-img{height:210px}
       .distance-content{padding:24px}
       .distance-content h3{font-size:28px}
       .distance-content p{font-size:14px}
@@ -591,6 +632,7 @@
       .kit-card{border-radius:24px;min-height:auto!important;height:auto!important}
       .kit-card h3{font-size:24px}
       .precio{font-size:34px;margin:14px 0}
+      .kit-img{height:190px}
       .kit-body{padding:24px}
       .kit-card ul{margin-bottom:0;padding-bottom:0}
       #campoTallaCiclista,
@@ -700,6 +742,7 @@
 
       <div class="distance-grid" style="margin-bottom:40px;">
         <a href="#costos-section" class="distance-card">
+          <img src="playera-medalla.png" alt="Playera oficial del evento" class="distance-img">
           <div class="distance-content">
             <span>Finisher oficial</span>
             <h3>Playera oficial</h3>
@@ -708,6 +751,7 @@
         </a>
 
         <a href="#costos-section" class="distance-card">
+          <img src="kit-completo.png" alt="Medalla finisher del evento" class="distance-img">
           <div class="distance-content">
             <span>Reconocimiento</span>
             <h3>Medalla finisher</h3>
@@ -754,7 +798,9 @@
             <div class="kit-body">
               <span class="kit-label">Full experience</span>
               <h3>Kit completo</h3>
+              <div class="precio-especial">Precio especial hasta el 29 de mayo</div>
               <p class="precio">$585</p>
+              <p class="precio-normal">Después del 29 de mayo: $650</p>
               <ul>
                 <li>Registro al evento</li>
                 <li>Puntos de hidratación</li>
@@ -995,7 +1041,7 @@
             </div>
 
             <div class="kit-card">
-              <div class="kit-select">
+                <div class="kit-select">
                 <input type="radio" name="kit" value="Playera y medalla — $350" data-required="true">
               </div>
               <div class="kit-body">
@@ -1012,13 +1058,15 @@
 
             <div class="kit-card">
               <span class="badge-popular">Más completo</span>
-              <div class="kit-select">
+                <div class="kit-select">
                 <input type="radio" name="kit" value="Kit completo — $585" data-required="true">
               </div>
               <div class="kit-body">
                 <span class="kit-label">Full experience</span>
                 <h3>Kit completo</h3>
+                <div class="precio-especial">Precio especial hasta el 29 de mayo</div>
                 <p class="precio">$585</p>
+                <p class="precio-normal">Después del 29 de mayo: $650</p>
                 <ul>
                   <li>Registro al evento</li>
                   <li>Puntos de hidratación</li>
@@ -1345,7 +1393,7 @@
       Ejemplo México: 526641234567
       Ejemplo USA: 16191234567
     */
-    const WHATSAPP_REGISTRO = "526641744075";
+    const WHATSAPP_REGISTRO = "526641234567";
 
     const participacion = document.getElementById("participacion");
     const seccionCiclista = document.getElementById("seccionCiclista");
