@@ -197,18 +197,10 @@
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
     .stat{
-      display:block;
       padding:18px;
       border-radius:20px;
       background:rgba(255,255,255,.045);
       border:1px solid var(--line);
-      transition:.22s ease;
-    }
-
-    .stat:hover{
-      transform:translateY(-4px);
-      border-color:rgba(255,212,0,.45);
-      background:rgba(255,255,255,.07);
     }
 
     .stat strong{display:block;color:var(--yellow);text-transform:uppercase;font-size:13px;margin-bottom:6px}
@@ -239,22 +231,13 @@
 
     .distance-card{
       position:relative;
-      min-height:430px;
+      min-height:280px;
       border-radius:34px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
-      background:#000;
+      background:#0d111a;
       box-shadow:0 28px 80px rgba(0,0,0,.35);
       transition:transform .28s ease, border-color .28s ease;
-    }
-
-    .distance-card img{
-      width:100%;
-      height:430px;
-      object-fit:cover;
-      display:block;
-      opacity:.92;
-      transition:transform .5s ease;
     }
 
     .distance-card:hover{
@@ -262,24 +245,13 @@
       border-color:rgba(255,212,0,.45);
     }
 
-    .distance-card:hover img{transform:scale(1.03)}
-
     .distance-content{
-      position:absolute;
-      inset:auto 0 0 0;
       padding:30px;
-      background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));
     }
 
     .distance-content span{color:var(--blue);text-transform:uppercase;letter-spacing:2px;font-weight:900;font-size:12px}
     .distance-content h3{color:#fff;margin:8px 0 10px;font-size:34px;line-height:1.05}
     .distance-content p{color:#d7dce5;line-height:1.6;margin:0}
-
-    .kit-preview-card.medalla img{
-      object-fit:contain!important;
-      background:#050505;
-      padding:28px 28px 150px;
-    }
 
     .info-grid{
       display:grid;
@@ -397,19 +369,19 @@
       grid-template-columns:repeat(3,1fr);
       gap:24px;
       margin-top:18px;
-      align-items:stretch;
+      align-items:start;
     }
 
     .kit-card{
       position:relative;
-      min-height:100%;
+      min-height:auto!important;
+      height:auto!important;
       display:flex;
       flex-direction:column;
       border-radius:30px;
       overflow:hidden;
       background:#0d111a;
       border:1px solid var(--line);
-      cursor:pointer;
       transition:.22s;
     }
 
@@ -420,28 +392,9 @@
     }
 
     .kit-select{padding:22px 24px 0}
-    .kit-card input{width:20px;height:20px;margin:0;accent-color:var(--yellow)}
+    .kit-card input[type="radio"]{width:20px;height:20px;margin:0;accent-color:var(--yellow)}
 
-    .kit-media{
-      display:grid;
-      gap:0;
-      background:#050505;
-      border-bottom:1px solid var(--line);
-    }
-
-    .kit-media img{
-      width:100%;
-      height:190px;
-      object-fit:cover;
-      object-position:center top;
-      display:block;
-      background:#000;
-    }
-
-    .kit-media.split img:first-child{height:160px}
-    .kit-media.split img:last-child{height:140px;border-top:1px solid var(--line)}
-
-    .kit-body{padding:24px;display:flex;flex-direction:column;flex:1}
+    .kit-body{padding:24px;display:flex;flex-direction:column;flex:1;height:auto!important}
     .kit-label{color:var(--blue);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:950;margin-bottom:8px}
     .kit-card h3{margin:0;font-size:28px;line-height:1.05}
     .precio{font-size:42px;font-weight:950;color:var(--yellow);margin:16px 0}
@@ -459,6 +412,11 @@
       font-size:12px;
       font-weight:950;
       text-transform:uppercase;
+    }
+
+    #campoTallaCiclista,
+    #campoTallaStaff{
+      scroll-margin-top:90px;
     }
 
     .checkbox{
@@ -552,9 +510,8 @@
       .event-story img{width:130px}
       .event-story h3{font-size:22px;line-height:1.2}
       .event-story p{font-size:15px;line-height:1.65}
-      .distance-card{min-height:340px;border-radius:24px}
-      .distance-card img{height:380px}
-      .distance-content{padding:20px}
+      .distance-card{min-height:auto;border-radius:24px}
+      .distance-content{padding:24px}
       .distance-content h3{font-size:28px}
       .distance-content p{font-size:14px}
       .detail-card,.info-card{width:100%;border-radius:22px;padding:22px}
@@ -564,11 +521,20 @@
       .form-card{padding:22px 16px;border-radius:24px}
       form h2{font-size:20px;line-height:1.2}
       input,select,textarea{font-size:16px}
-      .kit-card{border-radius:24px}
+      .kit-grid{gap:18px}
+      .kit-card{border-radius:24px;min-height:auto!important;height:auto!important}
       .kit-card h3{font-size:24px}
-      .precio{font-size:34px}
-      .kit-media img{height:auto;max-height:180px}
-      .kit-media.split img:first-child,.kit-media.split img:last-child{height:auto;max-height:160px}
+      .precio{font-size:34px;margin:14px 0}
+      .kit-body{padding:24px}
+      .kit-card ul{margin-bottom:0;padding-bottom:0}
+      #campoTallaCiclista,
+      #campoTallaStaff{
+        margin-top:18px;
+        padding:18px;
+        border-radius:18px;
+        background:rgba(255,255,255,.045);
+        border:1px solid var(--line);
+      }
       .checkbox{padding:14px}
       button{padding:18px;font-size:16px}
       .contact-img{max-width:320px}
@@ -587,6 +553,7 @@
       <div class="nav-links">
         <a href="#evento">Evento</a>
         <a href="#kits-preview">Kits</a>
+        <a href="#costos-section">Costos</a>
         <a href="#registro">Registro</a>
         <a href="#contacto">Contacto</a>
         <a href="#registro" class="nav-cta">Regístrate</a>
@@ -606,18 +573,20 @@
           <a href="#registro" class="btn btn-primary">Registrarme</a>
           <a href="#detalle-info" class="btn btn-secondary">Ver información</a>
           <a href="#kits-preview" class="btn btn-secondary">Ver kit oficial</a>
-          <a href="#costos-info" class="btn btn-secondary">Costos</a>
+          <a href="#costos-section" class="btn btn-secondary">Costos</a>
         </div>
 
         <div class="stats">
-          <a href="#evento" class="stat"><strong>Distancias</strong><span>150 KM / 300 KM</span></a>
-          <a href="#detalle-info" class="stat"><strong>Ruta</strong><span>Otay – Bufadora – Otay</span></a>
-          <a href="#detalle-info" class="stat"><strong>Modalidad</strong><span>Autosuficiencia</span></a>
+          <a href="#evento" class="stat">
+            <strong>Distancias</strong><span>150 KM / 300 KM</span>
+          </a>
+          <div class="stat"><strong>Ruta</strong><span>Otay – Bufadora – Otay</span></div>
+          <div class="stat"><strong>Modalidad</strong><span>Autosuficiencia</span></div>
         </div>
       </div>
 
       <div class="hero-visual">
-        <a href="#evento" class="visual-card" style="position:relative;display:block;overflow:hidden;">
+        <a href="#detalle-info" class="visual-card" style="position:relative;display:block;overflow:hidden;">
           <img src="banner-150km.png" alt="150 KM" />
           <div style="position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));">
             <div style="color:#21b8ff;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Distancia alternativa</div>
@@ -626,7 +595,7 @@
           </div>
         </a>
 
-        <a href="#evento" class="visual-card" style="position:relative;display:block;overflow:hidden;">
+        <a href="#detalle-info" class="visual-card" style="position:relative;display:block;overflow:hidden;">
           <img src="banner-300km-ruta.png" alt="300 KM" />
           <div style="position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));">
             <div style="color:#ffd400;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Reto principal</div>
@@ -664,8 +633,7 @@
       </div>
 
       <div class="distance-grid" style="margin-bottom:40px;">
-        <a href="#costos-info" class="distance-card">
-          <img src="playera.png" alt="Playera oficial 300 KM" />
+        <a href="#costos-section" class="distance-card">
           <div class="distance-content">
             <span>Finisher oficial</span>
             <h3>Playera oficial</h3>
@@ -673,8 +641,7 @@
           </div>
         </a>
 
-        <a href="#costos-info" class="distance-card kit-preview-card medalla">
-          <img src="medalla-300k.png" alt="Medalla oficial 300 KM" />
+        <a href="#costos-section" class="distance-card">
           <div class="distance-content">
             <span>Reconocimiento</span>
             <h3>Medalla finisher</h3>
@@ -682,6 +649,56 @@
           </div>
         </a>
       </div>
+
+      <section id="costos-section" class="section" style="padding-top:20px;">
+        <div class="section-title">
+          <h2>Costos oficiales</h2>
+          <p>Selecciona la experiencia que deseas vivir durante el reto OTAY - Bufadora - OTAY.</p>
+        </div>
+
+        <div class="kit-grid">
+          <div class="kit-card">
+            <div class="kit-body">
+              <span class="kit-label">Registro</span>
+              <h3>Inscripción e hidratación</h3>
+              <p class="precio">$300</p>
+              <ul>
+                <li>Registro al evento</li>
+                <li>Puntos de hidratación</li>
+                <li>Apoyo durante la ruta</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kit-card">
+            <div class="kit-body">
+              <span class="kit-label">Finisher</span>
+              <h3>Playera y medalla</h3>
+              <p class="precio">$350</p>
+              <ul>
+                <li>Playera oficial del evento</li>
+                <li>Medalla finisher oficial</li>
+                <li>Diseño exclusivo edición 2026</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kit-card">
+            <span class="badge-popular">Más completo</span>
+            <div class="kit-body">
+              <span class="kit-label">Full experience</span>
+              <h3>Kit completo</h3>
+              <p class="precio">$585</p>
+              <ul>
+                <li>Registro al evento</li>
+                <li>Puntos de hidratación</li>
+                <li>Playera oficial</li>
+                <li>Medalla finisher</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div class="info-grid">
         <a href="#registro" class="info-card"><h3>🚴 Ciclistas</h3><p>Registro para participantes de 150 KM o 300 KM.</p></a>
@@ -737,8 +754,8 @@
           <div class="event-data">
             <div><strong>Evento:</strong> 300 KM Otay - Bufadora - Otay</div>
             <div><strong>Organiza:</strong> OTAY Night Riders</div>
-            <div><strong>Fecha:</strong> 27 de junio</div>
-            <div><strong>Venue:</strong> Circuito del Árbol</div>
+            <div><strong>Fecha:</strong> 27 de junio de 2026</div>
+            <div><strong>Ubicación:</strong> Circuito del Árbol</div>
             <div><strong>Disciplina:</strong> Ruta</div>
             <div><strong>Modalidad:</strong> Paseo</div>
             <div><strong>Nivel:</strong> Intermedio / Avanzado</div>
@@ -766,56 +783,6 @@
           <p style="margin-top:18px;">El punto de reunión será informado y confirmado por el grupo oficial de WhatsApp.</p>
         </div>
       </div>
-
-
-      <div id="costos-info" class="section-title" style="margin-top:70px;">
-        <h2>Costos</h2>
-        <p>Consulta las opciones disponibles para el registro del evento. Al seleccionar tu kit en el formulario, se solicitará la talla únicamente si incluye playera.</p>
-      </div>
-
-      <div class="kit-grid" style="margin-bottom:20px;">
-        <a href="#registro" class="kit-card" style="cursor:pointer;">
-          <div class="kit-body">
-            <span class="kit-label">Registro</span>
-            <h3>Inscripción e hidratación</h3>
-            <p class="precio">$300</p>
-            <ul>
-              <li>Registro al evento</li>
-              <li>Puntos de hidratación</li>
-              <li>Apoyo durante la ruta</li>
-            </ul>
-          </div>
-        </a>
-
-        <a href="#registro" class="kit-card" style="cursor:pointer;">
-          <div class="kit-body">
-            <span class="kit-label">Finisher</span>
-            <h3>Playera y medalla</h3>
-            <p class="precio">$350</p>
-            <ul>
-              <li>Playera oficial del evento</li>
-              <li>Medalla finisher oficial</li>
-              <li>Diseño exclusivo edición 2026</li>
-            </ul>
-          </div>
-        </a>
-
-        <a href="#registro" class="kit-card" style="cursor:pointer;">
-          <span class="badge-popular">Más completo</span>
-          <div class="kit-body">
-            <span class="kit-label">Full experience</span>
-            <h3>Kit completo</h3>
-            <p class="precio">$585</p>
-            <ul>
-              <li>Registro al evento</li>
-              <li>Puntos de hidratación</li>
-              <li>Playera oficial</li>
-              <li>Medalla finisher</li>
-            </ul>
-          </div>
-        </a>
-      </div>
-
     </div>
   </section>
 
@@ -931,7 +898,7 @@
             </div>
           </div>
 
-          <h2 id="costos-form">Costos / Kits</h2>
+          <h2 id="kits">Kits</h2>
 
           <label>
             Selecciona una opción de kit
@@ -939,8 +906,10 @@
           </label>
 
           <div class="kit-grid">
-            <label class="kit-card">
-              <div class="kit-select"><input type="radio" name="kit" value="Inscripción e hidratación — $300" data-required="true"></div>
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="kit" value="Inscripción e hidratación — $300" data-required="true">
+              </div>
               <div class="kit-body">
                 <span class="kit-label">Registro</span>
                 <h3>Inscripción e hidratación</h3>
@@ -951,10 +920,12 @@
                   <li>Apoyo durante la ruta</li>
                 </ul>
               </div>
-            </label>
+            </div>
 
-            <label class="kit-card">
-              <div class="kit-select"><input type="radio" name="kit" value="Playera y medalla — $350" data-required="true"></div>
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="kit" value="Playera y medalla — $350" data-required="true">
+              </div>
               <div class="kit-body">
                 <span class="kit-label">Finisher</span>
                 <h3>Playera y medalla</h3>
@@ -965,11 +936,13 @@
                   <li>Diseño exclusivo edición 2026</li>
                 </ul>
               </div>
-            </label>
+            </div>
 
-            <label class="kit-card">
+            <div class="kit-card">
               <span class="badge-popular">Más completo</span>
-              <div class="kit-select"><input type="radio" name="kit" value="Kit completo — $585" data-required="true"></div>
+              <div class="kit-select">
+                <input type="radio" name="kit" value="Kit completo — $585" data-required="true">
+              </div>
               <div class="kit-body">
                 <span class="kit-label">Full experience</span>
                 <h3>Kit completo</h3>
@@ -981,7 +954,7 @@
                   <li>Medalla finisher</li>
                 </ul>
               </div>
-            </label>
+            </div>
           </div>
 
           <div id="campoTallaCiclista" class="hidden">
@@ -989,7 +962,6 @@
               Talla de playera
               <select name="talla_ciclista">
                 <option value="">Selecciona una talla</option>
-                <option>XS</option>
                 <option>S</option>
                 <option>M</option>
                 <option>L</option>
@@ -1152,35 +1124,47 @@
           </label>
 
           <div class="kit-grid">
-            <label class="kit-card">
-              <div class="kit-select"><input type="radio" name="staff_extra" value="No deseo adquirir playera ni medalla" data-required="true"></div>
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="No deseo adquirir playera ni medalla" data-required="true">
+              </div>
               <div class="kit-body">
                 <span class="kit-label">Voluntario</span>
                 <h3>No deseo adquirir</h3>
                 <p class="precio">$0</p>
-                <ul><li>Solo participaré como voluntario / carro de apoyo</li></ul>
+                <ul>
+                  <li>Solo participaré como voluntario / carro de apoyo</li>
+                </ul>
               </div>
-            </label>
+            </div>
 
-            <label class="kit-card">
-              <div class="kit-media"><img src="playera.png" alt="Playera oficial" /></div>
-              <div class="kit-select"><input type="radio" name="staff_extra" value="Deseo playera oficial" data-required="true"></div>
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="Deseo playera oficial — $200" data-required="true">
+              </div>
               <div class="kit-body">
                 <span class="kit-label">Playera</span>
                 <h3>Playera oficial</h3>
-                <p class="precio">$300</p>
+                <p class="precio">$200</p>
+                <ul>
+                  <li>Playera oficial Staff / Voluntario</li>
+                </ul>
               </div>
-            </label>
+            </div>
 
-            <label class="kit-card">
-              <div class="kit-media"><img src="medalla-300k.png" alt="Medalla finisher" /></div>
-              <div class="kit-select"><input type="radio" name="staff_extra" value="Deseo medalla finisher" data-required="true"></div>
+            <div class="kit-card">
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="Deseo medalla finisher — $150" data-required="true">
+              </div>
               <div class="kit-body">
                 <span class="kit-label">Medalla</span>
                 <h3>Medalla finisher</h3>
-                <p class="precio">$300</p>
+                <p class="precio">$150</p>
+                <ul>
+                  <li>Medalla oficial del evento</li>
+                </ul>
               </div>
-            </label>
+            </div>
           </div>
 
           <div id="campoTallaStaff" class="hidden">
@@ -1188,7 +1172,6 @@
               Talla de playera Staff / Voluntario
               <select id="tallaStaff" name="talla_staff">
                 <option value="">Selecciona una talla</option>
-                <option>XS</option>
                 <option>S</option>
                 <option>M</option>
                 <option>L</option>
@@ -1299,6 +1282,13 @@
       } else {
         campoTallaCiclista.classList.remove("hidden");
         tallaCiclista.required = true;
+
+        setTimeout(() => {
+          campoTallaCiclista.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 250);
       }
     }
 
@@ -1314,9 +1304,17 @@
         return;
       }
 
-      if (opcion.value === "Deseo playera oficial") {
+      if (opcion.value === "Deseo playera oficial — $200") {
         campoTallaStaff.classList.remove("hidden");
         tallaStaff.required = true;
+
+        setTimeout(() => {
+          campoTallaStaff.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 250);
+
       } else {
         campoTallaStaff.classList.add("hidden");
         tallaStaff.required = false;
