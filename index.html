@@ -445,6 +445,27 @@
       font-weight:950;
       text-transform:uppercase;
       cursor:pointer;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+
+    button:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+      transform:none;
+      filter:grayscale(.15);
+    }
+
+    .sending-message{
+      display:none;
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(33,184,255,.10);
+      border:1px solid rgba(33,184,255,.35);
+      color:#dff6ff;
+      text-align:center;
+      font-weight:800;
+      line-height:1.5;
     }
 
     .success{
@@ -1191,7 +1212,11 @@
           <label for="acepto" id="textoResponsabilidad">Declaro que la información proporcionada es correcta y acepto las condiciones de participación del evento.</label>
         </div>
 
-        <button type="submit">Enviar registro</button>
+        <button type="submit" id="btnEnviar">Enviar registro</button>
+
+        <div id="mensajeEnviando" class="sending-message">
+          Enviando registro... por favor espera y no cierres esta página.
+        </div>
 
         <div id="mensajeExito" class="success">
           <h3>¡Registro enviado con éxito!</h3>
@@ -1256,6 +1281,9 @@
     const edadCalculada = document.getElementById("edadCalculada");
     const campoTallaCiclista = document.getElementById("campoTallaCiclista");
     const campoTallaStaff = document.getElementById("campoTallaStaff");
+    const btnEnviar = document.getElementById("btnEnviar");
+    const mensajeEnviando = document.getElementById("mensajeEnviando");
+    let enviandoRegistro = false;
 
     function setRequiredInSection(section, enabled) {
       section.querySelectorAll("[data-required='true']").forEach((field) => {
@@ -1415,6 +1443,15 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      if (enviandoRegistro) return;
+
+      enviandoRegistro = true;
+      btnEnviar.disabled = true;
+      btnEnviar.textContent = "Enviando registro...";
+      mensajeExito.style.display = "none";
+      mensajeEnviando.style.display = "block";
+      mensajeEnviando.scrollIntoView({ behavior: "smooth", block: "center" });
+
       const formData = new FormData(form);
       formData.append("fecha_registro", new Date().toLocaleString("es-MX"));
 
@@ -1428,11 +1465,18 @@
         form.reset();
         limpiarSecciones();
 
+        mensajeEnviando.style.display = "none";
         mensajeExito.style.display = "block";
         mensajeExito.scrollIntoView({ behavior: "smooth", block: "center" });
 
       } catch (error) {
         alert("Ocurrió un error al enviar el registro. Intenta nuevamente.");
+        mensajeEnviando.style.display = "none";
+
+      } finally {
+        enviandoRegistro = false;
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = "Enviar registro";
       }
     });
   </script>
