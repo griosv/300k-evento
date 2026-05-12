@@ -824,7 +824,7 @@
           </div>
 
           <label>Talla de playera Staff / Voluntario</label>
-          <select name="talla_staff" data-required="true">
+          <select id="tallaStaff" name="talla_staff">
             <option value="">Selecciona una talla</option>
             <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
           </select>
@@ -844,18 +844,69 @@
   </main>
 
   <footer id="contacto">
-    <div class="contact-img"><img src="contacto.png" alt="Grupo oficial de WhatsApp 300KM" /></div>
+    <a
+      href="https://chat.whatsapp.com/IooPjqqmGeiEdAsDWk59YV?mode=gi_t"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-img"
+      style="display:block;transition:.25s ease;"
+    >
+      <img src="contacto.png" alt="Grupo oficial de WhatsApp 300KM" />
+    </a>
+
     <p><strong>OTAY Night Riders – Oficial</strong></p>
     <p>Únete al grupo oficial de WhatsApp para información, avisos y seguimiento del evento.</p>
-    <p style="color:#21b8ff;">Otay – Bufadora – Otay | Registro oficial del evento</p>
+
+    <a
+      href="https://chat.whatsapp.com/IooPjqqmGeiEdAsDWk59YV?mode=gi_t"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        margin-top:16px;
+        padding:14px 24px;
+        border-radius:999px;
+        background:linear-gradient(90deg,#25D366,#128C7E);
+        color:white;
+        font-weight:900;
+        text-transform:uppercase;
+        letter-spacing:1px;
+        box-shadow:0 18px 40px rgba(37,211,102,.25);
+      "
+    >
+      Unirme al grupo oficial
+    </a>
+
+    <p style="color:#21b8ff;margin-top:18px;">Otay – Bufadora – Otay | Registro oficial del evento</p>
   </footer>
 
   <script>
     const WEB_APP_URL="https://script.google.com/macros/s/AKfycbzoyq6cQ__SRT8Xo8tXAW6fVOYfQGVxqe7ARKnkzL_w8qLUBpPyOuGwgIGV5E_-xLC_eA/exec";
-    const participacion=document.getElementById("participacion"),seccionCiclista=document.getElementById("seccionCiclista"),seccionVoluntario=document.getElementById("seccionVoluntario"),carroPersonal=document.getElementById("carroPersonal"),datosCarroPersonal=document.getElementById("datosCarroPersonal"),form=document.getElementById("registroForm"),mensajeExito=document.getElementById("mensajeExito"),textoResponsabilidad=document.getElementById("textoResponsabilidad");
+    const participacion=document.getElementById("participacion"),seccionCiclista=document.getElementById("seccionCiclista"),seccionVoluntario=document.getElementById("seccionVoluntario"),carroPersonal=document.getElementById("carroPersonal"),datosCarroPersonal=document.getElementById("datosCarroPersonal"),form=document.getElementById("registroForm"),mensajeExito=document.getElementById("mensajeExito"),textoResponsabilidad=document.getElementById("textoResponsabilidad"),tallaStaff=document.getElementById("tallaStaff");
     function setRequiredInSection(section,enabled){section.querySelectorAll("[data-required='true']").forEach(field=>field.required=enabled)}
     function setCarroRequired(enabled){datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach(field=>field.required=enabled)}
     setRequiredInSection(seccionCiclista,false);setRequiredInSection(seccionVoluntario,false);setCarroRequired(false);
+    function validarTallaStaff(){
+      const opcion=document.querySelector('input[name="staff_extra"]:checked');
+      if(!opcion){
+        tallaStaff.required=false;
+        return;
+      }
+
+      if(opcion.value==="No deseo adquirir playera ni medalla"){
+        tallaStaff.required=false;
+        tallaStaff.value="";
+      }else{
+        tallaStaff.required=true;
+      }
+    }
+
+    document.querySelectorAll('input[name="staff_extra"]').forEach(radio=>{
+      radio.addEventListener("change",validarTallaStaff)
+    });
+
     participacion.addEventListener("change",()=>{mensajeExito.style.display="none";seccionCiclista.classList.add("hidden");seccionVoluntario.classList.add("hidden");setRequiredInSection(seccionCiclista,false);setRequiredInSection(seccionVoluntario,false);setCarroRequired(false);if(participacion.value==="Ciclista"){seccionCiclista.classList.remove("hidden");setRequiredInSection(seccionCiclista,true);setCarroRequired(carroPersonal.value==="Sí");textoResponsabilidad.innerHTML=`Declaro que participo bajo mi propia responsabilidad y confirmo que me encuentro en condiciones físicas adecuadas para realizar el reto ciclista. Entiendo que este es un evento de autosuficiencia y que los organizadores, voluntarios y patrocinadores no se hacen responsables por accidentes, lesiones, pérdidas, daños mecánicos o cualquier situación derivada durante el recorrido. Asimismo, acepto seguir las indicaciones de seguridad y mantener una conducta responsable durante toda la ruta.`}if(participacion.value==="Voluntario / Carro de apoyo"){seccionVoluntario.classList.remove("hidden");setRequiredInSection(seccionVoluntario,true);textoResponsabilidad.innerHTML=`Declaro que participaré como voluntario o carro de apoyo bajo mi propia responsabilidad y que mi vehículo se encuentra en condiciones adecuadas para realizar el acompañamiento durante el evento. Entiendo que debo mantener comunicación con los organizadores, apoyar de manera responsable en los puntos asignados y seguir las indicaciones de seguridad durante toda la ruta.`}});
     carroPersonal.addEventListener("change",()=>{if(carroPersonal.value==="Sí"){datosCarroPersonal.classList.remove("hidden");setCarroRequired(participacion.value==="Ciclista")}else{datosCarroPersonal.classList.add("hidden");setCarroRequired(false)}});
     form.addEventListener("submit",async e=>{e.preventDefault();const formData=new FormData(form),data=Object.fromEntries(formData.entries());data.fecha_registro=new Date().toLocaleString("es-MX");if(WEB_APP_URL==="PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT"){alert("Falta configurar la URL de Google Apps Script para guardar los registros en Google Sheets.");return}try{await fetch(WEB_APP_URL,{method:"POST",mode:"no-cors",body:formData});form.reset();seccionCiclista.classList.add("hidden");seccionVoluntario.classList.add("hidden");datosCarroPersonal.classList.add("hidden");setRequiredInSection(seccionCiclista,false);setRequiredInSection(seccionVoluntario,false);setCarroRequired(false);mensajeExito.style.display="block";mensajeExito.scrollIntoView({behavior:"smooth",block:"center"})}catch(error){alert("Ocurrió un error al enviar el registro. Intenta nuevamente.")}});
