@@ -216,7 +216,7 @@
 
     .distance-card{
       position:relative;
-      min-height:560px;
+      min-height:460px;
       border-radius:34px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
@@ -226,6 +226,35 @@
     }
 
     .distance-card img{width:100%;height:100%;object-fit:cover;display:block;opacity:.90;transition:transform .5s ease}
+
+    .kit-preview-card{
+      min-height:430px !important;
+      display:block;
+    }
+
+    .kit-preview-card img{
+      width:100%;
+      height:430px !important;
+      display:block;
+      background:#050505;
+    }
+
+    .kit-preview-card.playera img{
+      object-fit:cover !important;
+      object-position:center 34% !important;
+    }
+
+    .kit-preview-card.medalla img{
+      object-fit:contain !important;
+      object-position:center top !important;
+      padding:28px 28px 155px !important;
+    }
+
+    .kit-preview-card .distance-content{
+      min-height:150px;
+      padding:22px 26px;
+      background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.98) 42%,rgba(0,0,0,.98));
+    }
 
     .distance-card:hover,
     .visual-card:hover{
@@ -378,6 +407,10 @@
       .event-story p{font-size:15px;line-height:1.65}
 
       .distance-card{min-height:340px;border-radius:24px}
+      .kit-preview-card{min-height:380px!important}
+      .kit-preview-card img{height:380px!important}
+      .kit-preview-card.medalla img{padding:22px 22px 145px!important}
+      .kit-preview-card.playera img{object-position:center 36%!important}
       .distance-content{padding:20px}
       .distance-content h3{font-size:28px}
       .distance-content p{font-size:14px}
@@ -410,6 +443,9 @@
       .hero{background-size:160% auto}
       .stat{padding:15px}
       .distance-card{min-height:300px}
+      .kit-preview-card{min-height:340px!important}
+      .kit-preview-card img{height:340px!important}
+      .kit-preview-card.medalla img{padding:18px 18px 135px!important}
       .distance-content h3{font-size:24px}
       .form-card{padding:20px 14px}
       .kit-body{padding:20px}
@@ -498,8 +534,8 @@
       </div>
 
       <div class="distance-grid" style="margin-bottom:40px;">
-        <a href="#kits" class="distance-card" style="min-height:390px;display:block;">
-          <img src="playera-modelos-300k.png" alt="Playera oficial 300 KM" style="object-fit:cover;object-position:center 18%;background:#050505;height:390px;" />
+        <a href="#kits" class="distance-card kit-preview-card playera">
+          <img src="playera-modelos-300k.png" alt="Playera oficial 300 KM" />
           <div class="distance-content">
             <span>Finisher oficial</span>
             <h3>Playera oficial</h3>
@@ -507,8 +543,8 @@
           </div>
         </a>
 
-        <a href="#kits" class="distance-card" style="min-height:390px;display:block;">
-          <img src="medalla-300k.png" alt="Medalla oficial 300 KM" style="object-fit:contain;background:#050505;padding:20px;height:390px;" />
+        <a href="#kits" class="distance-card kit-preview-card medalla">
+          <img src="medalla-300k.png" alt="Medalla oficial 300 KM" />
           <div class="distance-content">
             <span>Reconocimiento</span>
             <h3>Medalla finisher</h3>
@@ -815,7 +851,7 @@
   </footer>
 
   <script>
-    const WEB_APP_URL="https://script.google.com/macros/s/AKfycbxyD5WVKM5JSpN7q-K8kJEdhiHfxQdBRpNAM3ul2bBbsdow02e0NrwT-s-TPXu0GyG1_Q/exec";
+    const WEB_APP_URL="https://script.google.com/macros/s/AKfycbzoyq6cQ__SRT8Xo8tXAW6fVOYfQGVxqe7ARKnkzL_w8qLUBpPyOuGwgIGV5E_-xLC_eA/exec";
     const participacion=document.getElementById("participacion"),seccionCiclista=document.getElementById("seccionCiclista"),seccionVoluntario=document.getElementById("seccionVoluntario"),carroPersonal=document.getElementById("carroPersonal"),datosCarroPersonal=document.getElementById("datosCarroPersonal"),form=document.getElementById("registroForm"),mensajeExito=document.getElementById("mensajeExito"),textoResponsabilidad=document.getElementById("textoResponsabilidad");
     function setRequiredInSection(section,enabled){section.querySelectorAll("[data-required='true']").forEach(field=>field.required=enabled)}
     function setCarroRequired(enabled){datosCarroPersonal.querySelectorAll("[data-carro-required='true']").forEach(field=>field.required=enabled)}
