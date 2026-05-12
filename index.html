@@ -197,10 +197,18 @@
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
     .stat{
+      display:block;
       padding:18px;
       border-radius:20px;
       background:rgba(255,255,255,.045);
       border:1px solid var(--line);
+      transition:.22s ease;
+    }
+
+    .stat:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,212,0,.45);
+      background:rgba(255,255,255,.07);
     }
 
     .stat strong{display:block;color:var(--yellow);text-transform:uppercase;font-size:13px;margin-bottom:6px}
@@ -597,17 +605,19 @@
         <div class="hero-actions">
           <a href="#registro" class="btn btn-primary">Registrarme</a>
           <a href="#detalle-info" class="btn btn-secondary">Ver información</a>
+          <a href="#kits-preview" class="btn btn-secondary">Ver kit oficial</a>
+          <a href="#costos-info" class="btn btn-secondary">Costos</a>
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Distancias</strong><span>150 KM / 300 KM</span></div>
-          <div class="stat"><strong>Ruta</strong><span>Otay – Bufadora – Otay</span></div>
-          <div class="stat"><strong>Modalidad</strong><span>Autosuficiencia</span></div>
+          <a href="#evento" class="stat"><strong>Distancias</strong><span>150 KM / 300 KM</span></a>
+          <a href="#detalle-info" class="stat"><strong>Ruta</strong><span>Otay – Bufadora – Otay</span></a>
+          <a href="#detalle-info" class="stat"><strong>Modalidad</strong><span>Autosuficiencia</span></a>
         </div>
       </div>
 
       <div class="hero-visual">
-        <a href="#detalle-info" class="visual-card" style="position:relative;display:block;overflow:hidden;">
+        <a href="#evento" class="visual-card" style="position:relative;display:block;overflow:hidden;">
           <img src="banner-150km.png" alt="150 KM" />
           <div style="position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));">
             <div style="color:#21b8ff;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Distancia alternativa</div>
@@ -616,7 +626,7 @@
           </div>
         </a>
 
-        <a href="#detalle-info" class="visual-card" style="position:relative;display:block;overflow:hidden;">
+        <a href="#evento" class="visual-card" style="position:relative;display:block;overflow:hidden;">
           <img src="banner-300km-ruta.png" alt="300 KM" />
           <div style="position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));">
             <div style="color:#ffd400;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Reto principal</div>
@@ -654,7 +664,7 @@
       </div>
 
       <div class="distance-grid" style="margin-bottom:40px;">
-        <a href="#kits" class="distance-card">
+        <a href="#costos-info" class="distance-card">
           <img src="playera.png" alt="Playera oficial 300 KM" />
           <div class="distance-content">
             <span>Finisher oficial</span>
@@ -663,7 +673,7 @@
           </div>
         </a>
 
-        <a href="#kits" class="distance-card kit-preview-card medalla">
+        <a href="#costos-info" class="distance-card kit-preview-card medalla">
           <img src="medalla-300k.png" alt="Medalla oficial 300 KM" />
           <div class="distance-content">
             <span>Reconocimiento</span>
@@ -677,7 +687,7 @@
         <a href="#registro" class="info-card"><h3>🚴 Ciclistas</h3><p>Registro para participantes de 150 KM o 300 KM.</p></a>
         <a href="#registro" class="info-card"><h3>🚗 Apoyo</h3><p>Registro para voluntarios y carros de apoyo.</p></a>
         <div class="info-card"><h3>💧 Hidratación</h3><p>Carros de apoyo con hidratación y snacks durante el recorrido.</p></div>
-        <div class="info-card"><h3>🏁 Finisher</h3><p>Playera oficial y medalla del evento.</p></div>
+        <a href="#kits-preview" class="info-card"><h3>🏁 Finisher</h3><p>Playera oficial y medalla del evento.</p></a>
       </div>
 
       <div class="details-grid" id="detalle-info">
@@ -756,6 +766,56 @@
           <p style="margin-top:18px;">El punto de reunión será informado y confirmado por el grupo oficial de WhatsApp.</p>
         </div>
       </div>
+
+
+      <div id="costos-info" class="section-title" style="margin-top:70px;">
+        <h2>Costos</h2>
+        <p>Consulta las opciones disponibles para el registro del evento. Al seleccionar tu kit en el formulario, se solicitará la talla únicamente si incluye playera.</p>
+      </div>
+
+      <div class="kit-grid" style="margin-bottom:20px;">
+        <a href="#registro" class="kit-card" style="cursor:pointer;">
+          <div class="kit-body">
+            <span class="kit-label">Registro</span>
+            <h3>Inscripción e hidratación</h3>
+            <p class="precio">$300</p>
+            <ul>
+              <li>Registro al evento</li>
+              <li>Puntos de hidratación</li>
+              <li>Apoyo durante la ruta</li>
+            </ul>
+          </div>
+        </a>
+
+        <a href="#registro" class="kit-card" style="cursor:pointer;">
+          <div class="kit-body">
+            <span class="kit-label">Finisher</span>
+            <h3>Playera y medalla</h3>
+            <p class="precio">$350</p>
+            <ul>
+              <li>Playera oficial del evento</li>
+              <li>Medalla finisher oficial</li>
+              <li>Diseño exclusivo edición 2026</li>
+            </ul>
+          </div>
+        </a>
+
+        <a href="#registro" class="kit-card" style="cursor:pointer;">
+          <span class="badge-popular">Más completo</span>
+          <div class="kit-body">
+            <span class="kit-label">Full experience</span>
+            <h3>Kit completo</h3>
+            <p class="precio">$585</p>
+            <ul>
+              <li>Registro al evento</li>
+              <li>Puntos de hidratación</li>
+              <li>Playera oficial</li>
+              <li>Medalla finisher</li>
+            </ul>
+          </div>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -871,7 +931,7 @@
             </div>
           </div>
 
-          <h2 id="kits">Kits</h2>
+          <h2 id="costos-form">Costos / Kits</h2>
 
           <label>
             Selecciona una opción de kit
