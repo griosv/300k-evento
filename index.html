@@ -316,6 +316,7 @@
     form h2:first-child{margin-top:0}
 
     label{display:block;margin-top:16px;color:#edf1f7;font-weight:800}
+    .field-help{display:block;margin-top:6px;color:#94a3b8;font-size:12px;line-height:1.4;font-weight:500}
     input,select,textarea{width:100%;margin-top:8px;padding:15px;border-radius:15px;border:1px solid #343b48;background:#050505;color:#fff;font-size:16px}
     input:focus,select:focus,textarea:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 4px rgba(255,212,0,.09)}
     textarea{min-height:100px;resize:vertical}
@@ -659,12 +660,34 @@
         <section id="seccionCiclista" class="hidden">
           <h2>Datos personales – Ciclista</h2>
           <div class="form-grid">
-            <label>Nombre completo<input type="text" name="nombre_ciclista" data-required="true"></label>
-            <label>Edad<input type="number" name="edad" min="1" data-required="true"></label>
-            <label>Número de WhatsApp<input type="tel" name="whatsapp_ciclista" data-required="true"></label>
-            <label>Correo electrónico<input type="email" name="correo_ciclista" data-required="true"></label>
-            <label>Ciudad de residencia<input type="text" name="ciudad" data-required="true"></label>
-            <label>Equipo o club al que perteneces<input type="text" name="club" data-required="true"></label>
+            <label>Nombre completo
+              <input type="text" name="nombre_ciclista" data-required="true" placeholder="Ej: Gisela Ríos Villa">
+              <small class="field-help">Escribe tu nombre como deseas que aparezca en el registro.</small>
+            </label>
+            <label>Fecha de nacimiento
+              <input type="date" id="fechaNacimiento" name="fecha_nacimiento" data-required="true">
+              <small class="field-help">Selecciona tu fecha de nacimiento para calcular tu edad.</small>
+            </label>
+            <label>Edad
+              <input type="number" id="edadCalculada" name="edad" min="1" readonly placeholder="Se calculará automáticamente">
+              <small class="field-help">La edad se calculará automáticamente con la fecha de nacimiento.</small>
+            </label>
+            <label>Número de WhatsApp
+              <input type="tel" name="whatsapp_ciclista" data-required="true" placeholder="Ej: 6641234567">
+              <small class="field-help">Número donde podamos contactarte para avisos del evento.</small>
+            </label>
+            <label>Correo electrónico
+              <input type="email" name="correo_ciclista" data-required="true" placeholder="Ej: correo@dominio.com">
+              <small class="field-help">Aquí se enviará información de pago, kit y avisos importantes.</small>
+            </label>
+            <label>Ciudad de residencia
+              <input type="text" name="ciudad" data-required="true" placeholder="Ej: Tijuana">
+              <small class="field-help">Indica la ciudad desde donde participas.</small>
+            </label>
+            <label>Equipo o club al que perteneces
+              <input type="text" name="club" data-required="true" placeholder="Ej: OTAY Night Riders / Independiente">
+              <small class="field-help">Si no perteneces a un equipo, escribe Independiente.</small>
+            </label>
           </div>
 
           <h2>Información del reto</h2>
@@ -675,6 +698,7 @@
                 <option>150 KM</option>
                 <option>300 KM</option>
               </select>
+              <small class="field-help">Elige la distancia que realizarás durante el evento.</small>
             </label>
             <label>¿Desde dónde deseas salir?
               <select name="salida" data-required="true">
@@ -682,10 +706,13 @@
                 <option>Oficina</option>
                 <option>Rosarito</option>
               </select>
+              <small class="field-help">Selecciona el punto donde te integrarás a la ruta.</small>
             </label>
           </div>
 
-          <label>¿Llevarás carro de apoyo personal?</label>
+          <label>¿Llevarás carro de apoyo personal?
+            <small class="field-help">Indica si tendrás un vehículo propio acompañándote durante la ruta.</small>
+          </label>
           <select id="carroPersonal" name="carro_apoyo_personal" data-required="true">
             <option value="">Selecciona una opción</option>
             <option value="Sí">Sí</option>
@@ -694,8 +721,14 @@
 
           <div id="datosCarroPersonal" class="hidden">
             <div class="form-grid">
-              <label>Nombre del conductor<input type="text" name="nombre_conductor" data-carro-required="true"></label>
-              <label>Marca y modelo del vehículo<input type="text" name="vehiculo_personal" data-carro-required="true"></label>
+              <label>Nombre del conductor
+                <input type="text" name="nombre_conductor" data-carro-required="true" placeholder="Ej: Nombre de la persona que manejará">
+                <small class="field-help">Persona responsable del vehículo de apoyo.</small>
+              </label>
+              <label>Marca y modelo del vehículo
+                <input type="text" name="vehiculo_personal" data-carro-required="true" placeholder="Ej: Toyota Tacoma 2020">
+                <small class="field-help">Ayuda a identificar el vehículo durante la logística.</small>
+              </label>
             </div>
           </div>
 
@@ -742,11 +775,15 @@
             </label>
           </div>
 
-          <label>Talla de playera</label>
-          <select name="talla_ciclista" data-required="true">
-            <option value="">Selecciona una talla</option>
-            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-          </select>
+          <div id="campoTallaCiclista" class="hidden">
+            <label>Talla de playera
+              <small class="field-help">Solo aparece cuando tu kit incluye playera.</small>
+            </label>
+            <select name="talla_ciclista">
+              <option value="">Selecciona una talla</option>
+              <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+            </select>
+          </div>
           <div class="note">Selecciona únicamente una opción de kit. Las playeras son corte unisex/hombre.</div>
 
           <h2>Información médica</h2>
@@ -754,20 +791,46 @@
             <label>¿Cuentas con servicio médico?
               <select name="servicio_medico" data-required="true">
                 <option value="">Selecciona una opción</option>
-                <option>IMSS</option><option>ISSSTE</option><option>Seguro Particular</option><option>Otro</option>
+                <option>IMSS</option><option>ISSSTE</option><option>Seguro Particular</option><option>Otro</option><option>No cuento con servicio médico</option>
               </select>
+              <small class="field-help">Selecciona el servicio médico al que acudirías en caso de emergencia.</small>
             </label>
-            <label>Número de seguro social / póliza<input type="text" name="numero_seguro" data-required="true"></label>
-            <label>Tipo de sangre<input type="text" name="tipo_sangre" data-required="true"></label>
+            <label>Número de seguro social / póliza
+              <input type="text" name="numero_seguro" data-required="true" placeholder="Ej: NSS, número de póliza o No aplica">
+              <small class="field-help">Si no cuentas con número, escribe No aplica.</small>
+            </label>
+            <label>Tipo de sangre
+              <select name="tipo_sangre" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>O+</option><option>O-</option><option>A+</option><option>A-</option>
+                <option>B+</option><option>B-</option><option>AB+</option><option>AB-</option>
+                <option>No lo sé</option>
+              </select>
+              <small class="field-help">Dato de apoyo para atención médica de emergencia.</small>
+            </label>
           </div>
           <label>¿Padeces alguna condición médica relevante?</label>
-          <textarea name="condicion_medica" data-required="true" placeholder="Si no aplica, escribe: No aplica"></textarea>
+          <textarea name="condicion_medica" data-required="true" placeholder="Ej: Asma, diabetes, alergias, medicamento especial o No aplica"></textarea>
+          <small class="field-help">Incluye alergias, medicamentos importantes o cualquier condición que el staff deba conocer.</small>
 
           <h2>Contacto de emergencia</h2>
           <div class="form-grid">
-            <label>Nombre completo del contacto de emergencia<input type="text" name="contacto_emergencia" data-required="true"></label>
-            <label>Relación / parentesco<input type="text" name="parentesco" data-required="true"></label>
-            <label>Número telefónico del contacto de emergencia<input type="tel" name="telefono_emergencia" data-required="true"></label>
+            <label>Nombre completo del contacto de emergencia
+              <input type="text" name="contacto_emergencia" data-required="true" placeholder="Ej: Nombre de familiar o persona de confianza">
+              <small class="field-help">Persona a quien se llamaría en caso de emergencia.</small>
+            </label>
+            <label>Relación / parentesco
+              <select name="parentesco" data-required="true">
+                <option value="">Selecciona una opción</option>
+                <option>Madre / Padre</option><option>Esposa(o) / Pareja</option><option>Hermana(o)</option>
+                <option>Hija(o)</option><option>Amiga(o)</option><option>Otro</option>
+              </select>
+              <small class="field-help">Indica la relación con tu contacto de emergencia.</small>
+            </label>
+            <label>Número telefónico del contacto de emergencia
+              <input type="tel" name="telefono_emergencia" data-required="true" placeholder="Ej: 6641234567">
+              <small class="field-help">Debe ser un número disponible durante el evento.</small>
+            </label>
           </div>
           <div class="note">Este es un reto de autosuficiencia. Cada participante es responsable de su condición física, alimentación, hidratación, seguridad y equipo durante el recorrido.</div>
         </section>
@@ -775,10 +838,22 @@
         <section id="seccionVoluntario" class="hidden">
           <h2>Datos personales – Voluntario / Carro de apoyo</h2>
           <div class="form-grid">
-            <label>Nombre completo<input type="text" name="nombre_voluntario" data-required="true"></label>
-            <label>Número de WhatsApp<input type="tel" name="whatsapp_voluntario" data-required="true"></label>
-            <label>Correo electrónico<input type="email" name="correo_voluntario" data-required="true"></label>
-            <label>Equipo o grupo al que pertenece<input type="text" name="grupo_voluntario" data-required="true"></label>
+            <label>Nombre completo
+              <input type="text" name="nombre_voluntario" data-required="true" placeholder="Ej: Nombre completo">
+              <small class="field-help">Nombre de la persona que apoyará como voluntario o carro de apoyo.</small>
+            </label>
+            <label>Número de WhatsApp
+              <input type="tel" name="whatsapp_voluntario" data-required="true" placeholder="Ej: 6641234567">
+              <small class="field-help">Número para coordinación antes y durante el evento.</small>
+            </label>
+            <label>Correo electrónico
+              <input type="email" name="correo_voluntario" data-required="true" placeholder="Ej: correo@dominio.com">
+              <small class="field-help">Aquí se enviará información de logística y seguimiento.</small>
+            </label>
+            <label>Equipo o grupo al que pertenece
+              <input type="text" name="grupo_voluntario" data-required="true" placeholder="Ej: OTAY Night Riders / Independiente">
+              <small class="field-help">Si no perteneces a un grupo, escribe Independiente.</small>
+            </label>
           </div>
 
           <h2>Información del carro de apoyo</h2>
@@ -787,13 +862,18 @@
               <select name="rack" data-required="true">
                 <option value="">Selecciona una opción</option><option>Sí</option><option>No</option>
               </select>
+              <small class="field-help">Indica si tu vehículo puede transportar bicicletas en caso necesario.</small>
             </label>
             <label>¿Tu vehículo se encuentra en buenas condiciones?
               <select name="vehiculo_buenas_condiciones" data-required="true">
                 <option value="">Selecciona una opción</option><option>Sí</option><option>No</option>
               </select>
+              <small class="field-help">Confirma que el vehículo puede acompañar la ruta sin inconvenientes.</small>
             </label>
-            <label>Capacidad aproximada de bicicletas<input type="number" name="capacidad_bicicletas" min="0" data-required="true"></label>
+            <label>Capacidad aproximada de bicicletas
+              <input type="number" name="capacidad_bicicletas" min="0" data-required="true" placeholder="Ej: 2">
+              <small class="field-help">Número aproximado de bicicletas que podrías trasladar.</small>
+            </label>
           </div>
 
           <div class="note"><strong>Apoyo incluye:</strong><br>1 bolsa de hielo, 10 electrolitos por carro, $500 pesos para viáticos y playera Staff / Voluntario.</div>
@@ -823,11 +903,13 @@
             </label>
           </div>
 
-          <label>Talla de playera Staff / Voluntario</label>
-          <select id="tallaStaff" name="talla_staff">
-            <option value="">Selecciona una talla</option>
-            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-          </select>
+          <div id="campoTallaStaff" class="hidden">
+            <label>Talla de playera Staff / Voluntario</label>
+            <select id="tallaStaff" name="talla_staff">
+              <option value="">Selecciona una talla</option>
+              <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+            </select>
+          </div>
           <div class="note">Las playeras son corte unisex/hombre.</div>
           <div class="note">Los carros de apoyo y voluntarios son fundamentales para la seguridad y logística del evento.</div>
         </section>
@@ -894,6 +976,11 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8Kr
     const mensajeExito = document.getElementById("mensajeExito");
     const textoResponsabilidad = document.getElementById("textoResponsabilidad");
     const tallaStaff = document.getElementById("tallaStaff");
+    const fechaNacimiento = document.getElementById("fechaNacimiento");
+    const edadCalculada = document.getElementById("edadCalculada");
+    const campoTallaCiclista = document.getElementById("campoTallaCiclista");
+    const campoTallaStaff = document.getElementById("campoTallaStaff");
+    const campoTallaStaff = document.getElementById("campoTallaStaff");
 
     function setRequiredInSection(section, enabled) {
       section.querySelectorAll("[data-required='true']").forEach((field) => {
@@ -907,21 +994,41 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8Kr
       });
     }
 
+    function validarTallaCiclista() {
+      const kit = document.querySelector('input[name="kit"]:checked');
+      const tallaCiclista = document.querySelector('select[name="talla_ciclista"]');
+
+      if (!campoTallaCiclista || !tallaCiclista) return;
+
+      if (!kit || kit.value === "Inscripción e hidratación — $200") {
+        campoTallaCiclista.classList.add("hidden");
+        tallaCiclista.required = false;
+        tallaCiclista.value = "";
+      } else {
+        campoTallaCiclista.classList.remove("hidden");
+        tallaCiclista.required = true;
+      }
+    }
+
     function validarTallaStaff() {
-      if (!tallaStaff) return;
+      if (!tallaStaff || !campoTallaStaff) return;
 
       const opcion = document.querySelector('input[name="staff_extra"]:checked');
 
       if (!opcion) {
+        campoTallaStaff.classList.add("hidden");
         tallaStaff.required = false;
+        tallaStaff.value = "";
         return;
       }
 
-      if (opcion.value === "No deseo adquirir playera ni medalla") {
+      if (opcion.value === "Deseo playera oficial") {
+        campoTallaStaff.classList.remove("hidden");
+        tallaStaff.required = true;
+      } else {
+        campoTallaStaff.classList.add("hidden");
         tallaStaff.required = false;
         tallaStaff.value = "";
-      } else {
-        tallaStaff.required = true;
       }
     }
 
@@ -929,15 +1036,45 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8Kr
       seccionCiclista.classList.add("hidden");
       seccionVoluntario.classList.add("hidden");
       datosCarroPersonal.classList.add("hidden");
+      if (campoTallaCiclista) campoTallaCiclista.classList.add("hidden");
+      if (campoTallaStaff) campoTallaStaff.classList.add("hidden");
       setRequiredInSection(seccionCiclista, false);
       setRequiredInSection(seccionVoluntario, false);
       setCarroRequired(false);
-      if (tallaStaff) tallaStaff.required = false;
+      const tallaCiclista = document.querySelector('select[name="talla_ciclista"]');
+      if (tallaCiclista) { tallaCiclista.required = false; tallaCiclista.value = ""; }
+      if (tallaStaff) { tallaStaff.required = false; tallaStaff.value = ""; }
     }
 
     setRequiredInSection(seccionCiclista, false);
     setRequiredInSection(seccionVoluntario, false);
     setCarroRequired(false);
+
+    if (fechaNacimiento && edadCalculada) {
+      fechaNacimiento.addEventListener("change", () => {
+        const nacimiento = new Date(fechaNacimiento.value);
+
+        if (isNaN(nacimiento)) {
+          edadCalculada.value = "";
+          return;
+        }
+
+        const hoy = new Date();
+        let edad = hoy.getFullYear() - nacimiento.getFullYear();
+        const mes = hoy.getMonth() - nacimiento.getMonth();
+
+        if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+          edad--;
+        }
+
+        edadCalculada.value = edad >= 0 ? edad : "";
+      });
+    }
+
+
+    document.querySelectorAll('input[name="kit"]').forEach((radio) => {
+      radio.addEventListener("change", validarTallaCiclista);
+    });
 
     document.querySelectorAll('input[name="staff_extra"]').forEach((radio) => {
       radio.addEventListener("change", validarTallaStaff);
@@ -951,6 +1088,7 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwaCQ3EiRg7mB55O8Kr
         seccionCiclista.classList.remove("hidden");
         setRequiredInSection(seccionCiclista, true);
         setCarroRequired(carroPersonal.value === "Sí");
+        validarTallaCiclista();
         textoResponsabilidad.innerHTML = `Declaro que participo bajo mi propia responsabilidad y confirmo que me encuentro en condiciones físicas adecuadas para realizar el reto ciclista. Entiendo que este es un evento de autosuficiencia y que los organizadores, voluntarios y patrocinadores no se hacen responsables por accidentes, lesiones, pérdidas, daños mecánicos o cualquier situación derivada durante el recorrido. Asimismo, acepto seguir las indicaciones de seguridad y mantener una conducta responsable durante toda la ruta.`;
       }
 
