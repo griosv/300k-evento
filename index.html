@@ -434,6 +434,93 @@
       background:#050505;
     }
 
+
+    .payment-card{
+      max-width:980px;
+      margin:34px auto 0;
+      padding:30px;
+      border-radius:30px;
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      border:1px solid rgba(255,212,0,.30);
+      box-shadow:0 28px 80px rgba(0,0,0,.35);
+    }
+
+    .payment-card h3{
+      margin:0 0 10px;
+      color:var(--yellow);
+      font-size:30px;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      text-align:center;
+    }
+
+    .payment-card > p{
+      margin:0 auto 24px;
+      max-width:760px;
+      color:var(--muted);
+      line-height:1.65;
+      text-align:center;
+    }
+
+    .payment-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr;
+      gap:16px;
+    }
+
+    .payment-item{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .payment-item span{
+      display:block;
+      color:var(--blue);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:11px;
+      font-weight:950;
+      margin-bottom:8px;
+    }
+
+    .payment-item strong{
+      display:block;
+      color:#fff;
+      font-size:18px;
+      line-height:1.35;
+      word-break:break-word;
+    }
+
+    .copy-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:14px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,212,0,.45);
+      background:rgba(255,212,0,.10);
+      color:var(--yellow);
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+
+    .payment-note{
+      margin-top:18px!important;
+      padding:14px;
+      border-radius:16px;
+      background:rgba(255,30,30,.10);
+      border:1px solid rgba(255,30,30,.35);
+      color:#ffd6d6!important;
+      font-size:14px;
+      font-weight:700;
+      text-align:center;
+    }
+
     .precio-especial{
       margin:14px 0 0;
       padding:9px 12px;
@@ -629,6 +716,12 @@
       form h2{font-size:20px;line-height:1.2}
       input,select,textarea{font-size:16px}
       .kit-grid{gap:18px}
+
+      .payment-card{padding:22px 16px;border-radius:24px}
+      .payment-card h3{font-size:24px;line-height:1.2}
+      .payment-grid{grid-template-columns:1fr}
+      .payment-item strong{font-size:16px}
+
       .kit-card{border-radius:24px;min-height:auto!important;height:auto!important}
       .kit-card h3{font-size:24px}
       .precio{font-size:34px;margin:14px 0}
@@ -810,6 +903,32 @@
             </div>
           </div>
         </div>
+
+        <div class="payment-card" id="pago">
+          <h3>Datos para transferencia</h3>
+          <p>Realiza tu pago de acuerdo con el kit seleccionado. Después de enviar tu registro, conserva tu comprobante para seguimiento por WhatsApp.</p>
+
+          <div class="payment-grid">
+            <div class="payment-item">
+              <span>CLABE</span>
+              <strong id="clabePago">722969010462671583</strong>
+              <button type="button" class="copy-btn" data-copy="722969010462671583">Copiar CLABE</button>
+            </div>
+
+            <div class="payment-item">
+              <span>Beneficiario</span>
+              <strong>Alejandra Rodriguez</strong>
+            </div>
+
+            <div class="payment-item">
+              <span>Institución</span>
+              <strong>Mercado Pago W</strong>
+            </div>
+          </div>
+
+          <p class="payment-note">Importante: envía tu comprobante de pago por WhatsApp para confirmar tu lugar y kit del evento.</p>
+        </div>
+
       </section>
 
       <div class="info-grid">
@@ -1331,7 +1450,7 @@
 
         <div id="mensajeExito" class="success">
           <h3>¡Registro enviado con éxito!</h3>
-          <p>Tu información fue registrada correctamente.<br><br>En breve recibirás por correo electrónico información del evento, método de pago, grupo oficial de WhatsApp y detalles importantes del reto <strong>OTAY – BUFADORA – OTAY 2026</strong>.</p>
+          <p>Tu información fue registrada correctamente.<br><br>Para confirmar tu lugar, realiza tu pago y envía tu comprobante por WhatsApp.<br><br><strong>CLABE:</strong> 722969010462671583<br><strong>Beneficiario:</strong> Alejandra Rodriguez<br><strong>Institución:</strong> Mercado Pago W<br><br>También recibirás información del evento, grupo oficial de WhatsApp y detalles importantes del reto <strong>OTAY – BUFADORA – OTAY 2026</strong>.</p>
 
           <a id="btnWhatsAppConfirmacion" class="whatsapp-confirm-btn" href="#" target="_blank" rel="noopener noreferrer">
             Enviar confirmación por WhatsApp
@@ -1645,6 +1764,23 @@
         datosCarroPersonal.classList.add("hidden");
         setCarroRequired(false);
       }
+    });
+
+
+
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const texto = btn.getAttribute("data-copy") || "";
+        const textoOriginal = btn.textContent;
+
+        try {
+          await navigator.clipboard.writeText(texto);
+          btn.textContent = "Copiado";
+          setTimeout(() => btn.textContent = textoOriginal, 1800);
+        } catch (error) {
+          alert("CLABE: " + texto);
+        }
+      });
     });
 
     form.addEventListener("submit", async (e) => {
