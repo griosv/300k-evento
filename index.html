@@ -392,7 +392,7 @@
 
     .kit-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:24px;
       margin-top:18px;
       align-items:start;
@@ -1416,6 +1416,22 @@
                 </ul>
               </div>
             </div>
+
+            <div class="kit-card">
+              <span class="badge-popular">Kit completo</span>
+              <div class="kit-select">
+                <input type="radio" name="staff_extra" value="Kit completo Staff: camisa + medalla — $350" data-required="true">
+              </div>
+              <div class="kit-body">
+                <span class="kit-label">Camisa + medalla</span>
+                <h3>Kit completo Staff</h3>
+                <p class="precio">$350</p>
+                <ul>
+                  <li>Playera oficial Staff / Voluntario</li>
+                  <li>Medalla oficial del evento</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div id="campoTallaStaff" class="hidden">
@@ -1429,7 +1445,7 @@
                 <option>XL</option>
                 <option>XXL</option>
               </select>
-              <small class="field-help">Solo aparece si seleccionas playera oficial.</small>
+              <small class="field-help">Solo aparece si seleccionas playera oficial o kit completo Staff.</small>
             </label>
           </div>
 
@@ -1580,7 +1596,7 @@
         return;
       }
 
-      if (opcion.value === "Deseo playera oficial — $200") {
+      if (opcion.value === "Deseo playera oficial — $200" || opcion.value === "Kit completo Staff: camisa + medalla — $350") {
         campoTallaStaff.classList.remove("hidden");
         tallaStaff.required = true;
 
